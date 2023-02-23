@@ -1,18 +1,16 @@
 <template>
-  <table-edit
+  <edit-render
     :path_param="path_param"
     :form_fields="form_fields"
     :form_groups="form_groups"
     :model="model"
-  ></table-edit>
+  ></edit-render>
 </template>
 
 <script>
 
 export default {
-  components: {
-    TableEdit: window.$func.fetchComponent("components/common/TableEdit.vue")
-  },
+
   data() {
     return {
       id: null,
