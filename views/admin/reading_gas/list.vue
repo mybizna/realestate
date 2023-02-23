@@ -1,91 +1,33 @@
 
 <template>
-    <table-render :path_param="path_param" :search_fields="search_fields" :model="model" :table_fields="table_fields">
+    <table-render :path_param="['realestate', 'reading_gas']" :table_fields="table_fields">
+        <template #header>
+            <th-render>User</th-render>
+            <th-render>Payment</th-render>
+            <th-render>Amount</th-render>
+            <th-render>Completed</th-render>
+            <th-render>Successful</th-render>
+        </template>
+
+        <template #body="{ item }">
+            <td>{{ item.user_id__users__name }} {{ item.user_id__users__username }} {{ item.user_id__users__username }}</td>
+            <td>{{ item.payment_id }}</td>
+            <td>{{ item.amount }}</td>
+            <td>{{ item.completed }}</td>
+            <td>{{ item.successful }}</td>
+        </template>
+
     </table-render>
 </template>
 
 <script>
 
 export default {
-    data () {
+    data() {
         return {
-            path_param: ["realestate", "reading_gas"],
-            model: {
-                id: "",
-                description: "",
-                user_id: "",
-                payment_id: "",
-                amount: "",
-                completed: "",
-                successful: ""
-            },
-            search_fields: [
-                {
-                    type: "text",
-                    name: "description",
-                    label: "Description",
-                    ope: '',
-                },
-                {
-                    type: "text",
-                    name: "user_id",
-                    label: "User Id",
-                    ope: '',
-                },
-                {
-                    type: "text",
-                    name: "payment_id",
-                    label: "Payment",
-                    ope: '',
-                },
-                {
-                    type: "text",
-                    name: "amount",
-                    label: "Amount",
-                    ope: '',
-                },
-                {
-                    type: "text",
-                    name: "completed",
-                    label: "Completed",
-                    ope: '',
-                },
-                {
-                    type: "text",
-                    name: "successful",
-                    label: "Successful",
-                    ope: '',
-                }
-            ],
             table_fields: [
-                {
-                    text: "user_id",
-                    prop: "[user.name] (user.username) <i>[user.email]</i>"
-                },
-                {
-                    text: "description",
-                    prop: "description"
-                },
-                {
-                    text: "payment_id",
-                    prop: "payment_id"
-                },
-                {
-                    text: "amount",
-                    prop: "amount"
-                },
-                {
-                    text: "completed",
-                    prop: "completed",
-                    align: "center",
-                    is_boolean: true
-                },
-                {
-                    text: "successful",
-                    prop: "successful",
-                    align: "center",
-                    is_boolean: true
-                }
+                'user_id__users__name', 'user_id__users__username', 'user_id__users__email',
+                'payment_id', 'amount', 'completed', 'successful'
             ],
         };
     }
