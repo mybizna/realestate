@@ -14,8 +14,12 @@
             <td>{{ item.user_id__users__name }} {{ item.user_id__users__username }} {{ item.user_id__users__username }}</td>
             <td>{{ item.payment_id }}</td>
             <td>{{ item.amount }}</td>
-            <td>{{ item.completed }}</td>
-            <td>{{ item.successful }}</td>
+            <td class="text-center">
+                <btn-status :status="item.completed"></btn-status>
+            </td>
+            <td class="text-center">
+                <btn-status :status="item.successful"></btn-status>
+            </td>
         </template>
 
         </table-render>
