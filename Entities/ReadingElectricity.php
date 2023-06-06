@@ -23,8 +23,8 @@ class ReadingElectricity extends BaseModel
     {
         $table->increments('id');
         $table->integer('reading');
-        $table->integer('tenancy_id')->unsigned()->nullable();
-        $table->integer('invoice_id')->unsigned()->nullable();
+        $table->foreignId('tenancy_id')->nullable();
+        $table->foreignId('invoice_id')->nullable();
         $table->integer('units');
         $table->char('billing_period', 20)->nullable();
         $table->dateTime('billing_date')->nullable();
@@ -33,11 +33,7 @@ class ReadingElectricity extends BaseModel
 
     public function post_migration(Blueprint $table)
     {
-        if (Migration::checkKeyExist('realestate_reading_electricity', 'tenancy_id')) {
-            $table->foreign('tenancy_id')->references('id')->on('realestate_tenancy')->nullOnDelete();
-        }
-        if (Migration::checkKeyExist('realestate_reading_electricity', 'invoice_id')) {
-            $table->foreign('invoice_id')->references('id')->on('account_invoice')->nullOnDelete();
-        }
+        Migration::addForeign($table, 'realestate_tenancy', 'tenancy_id');
+        Migration::addForeign($table, 'account_invoice', 'invoice_id');
     }
 }

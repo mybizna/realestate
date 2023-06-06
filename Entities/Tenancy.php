@@ -25,8 +25,8 @@ class Tenancy extends BaseModel
         $table->increments('id');
         $table->string('title');
         $table->string('description')->nullable();
-        $table->integer('unit_id')->unsigned()->nullable();
-        $table->integer('partner_id')->unsigned()->nullable();
+        $table->foreignId('unit_id')->nullable();
+        $table->foreignId('partner_id')->nullable();
         $table->enum('type', ['weekly', 'bi_weekly', 'monthly', 'quarterly', 'bi_annually', 'annually',])->default('monthly');
         $table->double('amount', 8, 2)->nullable();
         $table->double('deposit', 8, 2)->nullable();
@@ -43,12 +43,8 @@ class Tenancy extends BaseModel
 
     public function post_migration(Blueprint $table)
     {
-        if (Migration::checkKeyExist('realestate_tenancy', 'unit_id')) {
-            $table->foreign('unit_id')->references('id')->on('realestate_unit')->nullOnDelete();
-        }
-        if (Migration::checkKeyExist('realestate_tenancy', 'partner_id')) {
-            $table->foreign('partner_id')->references('id')->on('partner')->nullOnDelete();
-        }
+        Migration::addForeign($table, 'realestate_unit', 'unit_id');
+        Migration::addForeign($table, 'partner', 'partner_id');
     }
 
 

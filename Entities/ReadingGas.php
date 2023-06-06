@@ -22,8 +22,8 @@ class ReadingGas extends BaseModel
     public function migration(Blueprint $table)
     {
         $table->increments('id');
-        $table->integer('tenancy_id')->unsigned()->nullable();
-        $table->integer('invoice_id')->unsigned()->nullable();
+        $table->foreignId('tenancy_id')->nullable();
+        $table->foreignId('invoice_id')->nullable();
         $table->integer('reading');
         $table->integer('units');
         $table->char('billing_period', 20)->nullable();
@@ -32,11 +32,7 @@ class ReadingGas extends BaseModel
 
     public function post_migration(Blueprint $table)
     {
-        if (Migration::checkKeyExist('realestate_reading_gas', 'tenancy_id')) {
-            $table->foreign('tenancy_id')->references('id')->on('realestate_tenancy')->nullOnDelete();
-        }
-        if (Migration::checkKeyExist('realestate_reading_gas', 'invoice_id')) {
-            $table->foreign('invoice_id')->references('id')->on('account_invoice')->nullOnDelete();
-        }
+        Migration::addForeign($table, 'realestate_tenancy', 'tenancy_id');
+        Migration::addForeign($table, 'account_invoice', 'invoice_id');
     }
 }

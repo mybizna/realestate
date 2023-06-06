@@ -23,14 +23,12 @@ class UnitSetup extends BaseModel
     {
         $table->increments('id');
         $table->string('title');
-        $table->integer('unit_id')->unsigned()->nullable();
+        $table->foreignId('unit_id')->nullable();
         $table->double('amount', 8, 2)->nullable();
     }
 
     public function post_migration(Blueprint $table)
     {
-        if (Migration::checkKeyExist('realestate_unit_setup', 'unit_id')) {
-            $table->foreign('unit_id')->references('id')->on('realestate_unit')->nullOnDelete();
-        }
+        Migration::addForeign($table, 'realestate_unit', 'unit_id');
     }
 }

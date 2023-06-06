@@ -23,18 +23,14 @@ class TenancyInvoice extends BaseModel
     {
 
         $table->increments('id');
-        $table->integer('tenancy_id')->unsigned()->nullable();
-        $table->integer('invoice_id')->unsigned()->nullable();
+        $table->foreignId('tenancy_id')->nullable();
+        $table->foreignId('invoice_id')->nullable();
         $table->char('billing_period', 20)->nullable();
     }
 
     public function post_migration(Blueprint $table)
     {
-        if (Migration::checkKeyExist('realestate_tenancy_invoice', 'tenancy_id')) {
-            $table->foreign('tenancy_id')->references('id')->on('realestate_tenancy')->nullOnDelete();
-        }
-        if (Migration::checkKeyExist('realestate_tenancy_invoice', 'invoice_id')) {
-            $table->foreign('invoice_id')->references('id')->on('account_invoice')->nullOnDelete();
-        }
+        Migration::addForeign($table, 'realestate_tenancy', 'tenancy_id');
+        Migration::addForeign($table, 'account_invoice', 'invoice_id');
     }
 }

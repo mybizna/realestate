@@ -23,7 +23,7 @@ class Building extends BaseModel
     {
         $table->increments('id');
         $table->string('name');
-        $table->integer('estate_id')->unsigned()->nullable();
+        $table->foreignId('estate_id')->nullable();
         $table->enum('type', ['apartment', 'maisonette', 'bungalow'])->default('apartment')->nullable();
         $table->string('description')->nullable();
         $table->integer('units')->nullable();
@@ -36,8 +36,6 @@ class Building extends BaseModel
 
     public function post_migration(Blueprint $table)
     {
-        if (Migration::checkKeyExist('realestate_building', 'estate_id')) {
-            $table->foreign('estate_id')->references('id')->on('realestate_estate')->nullOnDelete();
-        }
+        Migration::addForeign($table, 'realestate_estate', 'estate_id');
     }
 }

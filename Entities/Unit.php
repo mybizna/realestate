@@ -24,7 +24,7 @@ class Unit extends BaseModel
         $table->increments('id');
         $table->string('title');
         $table->string('description')->nullable();
-        $table->integer('building_id')->unsigned()->nullable();
+        $table->foreignId('building_id')->nullable();
         $table->enum('type', ['single', 'bedsitter', 'one_bedroom', 'two_bedroom', 'three_bedroom', 'four_bedroom',])->default('one_bedroom');
         $table->double('amount', 8, 2)->nullable();
         $table->double('deposit', 8, 2)->nullable();
@@ -37,8 +37,6 @@ class Unit extends BaseModel
 
     public function post_migration(Blueprint $table)
     {
-        if (Migration::checkKeyExist('realestate_unit', 'building_id')) {
-            $table->foreign('building_id')->references('id')->on('realestate_building')->nullOnDelete();
-        }
+        Migration::addForeign($table, 'realestate_building', 'building_id');
     }
 }

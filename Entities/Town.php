@@ -23,14 +23,12 @@ class Town extends BaseModel
     {
         $table->increments('id');
         $table->string('name');
-        $table->integer('region_id')->unsigned()->nullable();
+        $table->foreignId('region_id')->nullable();
         $table->string('description')->nullable();
     }
 
     public function post_migration(Blueprint $table)
     {
-        if (Migration::checkKeyExist('realestate_town', 'region_id')) {
-            $table->foreign('region_id')->references('id')->on('realestate_region')->nullOnDelete();
-        }
+        Migration::addForeign($table, 'realestate_region', 'region_id');
     }
 }
