@@ -34,11 +34,11 @@ class Tenancy extends BaseModel
         $table->integer('rooms');
         $table->dateTime('billing_date')->nullable();
         $table->boolean('is_merged_bill')->default(true)->nullable();
-        $table->boolean('is_started')->default(false)->nullable();
-        $table->boolean('is_closed')->default(false)->nullable();
-        $table->boolean('bill_gas')->default(false)->nullable();
-        $table->boolean('bill_water')->default(false)->nullable();
-        $table->boolean('bill_electricity')->default(false)->nullable();
+        $table->boolean('is_started')->default(0)->nullable();
+        $table->boolean('is_closed')->default(0)->nullable();
+        $table->boolean('bill_gas')->default(0)->nullable();
+        $table->boolean('bill_water')->default(0)->nullable();
+        $table->boolean('bill_electricity')->default(0)->nullable();
     }
 
     public function post_migration(Blueprint $table)

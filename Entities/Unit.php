@@ -31,7 +31,7 @@ class Unit extends BaseModel
         $table->double('goodwill', 8, 2)->nullable();
         $table->string('rooms');
         $table->string('bathrooms');
-        $table->boolean('is_full')->default(false)->nullable();
+        $table->boolean('is_full')->default(0)->nullable();
     }
 
 

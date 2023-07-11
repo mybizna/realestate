@@ -30,7 +30,7 @@ class Building extends BaseModel
         $table->double('default_deposit', 8, 2)->nullable();
         $table->double('default_goodwill', 8, 2)->nullable();
         $table->double('default_amount', 8, 2)->nullable();
-        $table->boolean('is_full')->default(false)->nullable();
+        $table->boolean('is_full')->default(0)->nullable();
     }
 
 
