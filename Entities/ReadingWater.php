@@ -2,9 +2,11 @@
 
 namespace Modules\Realestate\Entities;
 
-use Modules\Base\Entities\BaseModel;
 use Illuminate\Database\Schema\Blueprint;
 use Modules\Base\Classes\Migration;
+use Modules\Base\Entities\BaseModel;
+use Modules\Core\Classes\Views\FormBuilder;
+use Modules\Core\Classes\Views\ListTable;
 
 class ReadingWater extends BaseModel
 {
@@ -13,6 +15,56 @@ class ReadingWater extends BaseModel
     public $migrationDependancy = ['account_invoice', 'realestate_tenancy'];
     protected $table = "realestate_reading_water";
 
+    public function listTable()
+    {
+        // listing view fields
+        $fields = new ListTable();
+
+        $fields->name('name')->type('text')->ordering(true);
+        $fields->name('tenancy_id')->type('recordpicker')->table('realestate_tenancy')->ordering(true);
+        $fields->name('invoice_id')->type('recordpicker')->table('account_invoice')->ordering(true);
+        $fields->name('reading')->type('text')->ordering(true);
+        $fields->name('units')->type('text')->ordering(true);
+        $fields->name('billing_period')->type('text')->ordering(true);
+        $fields->name('billing_date')->type('date')->ordering(true);
+
+        return $fields;
+
+    }
+
+    public function formBuilder()
+    {
+        // listing view fields
+        $fields = new FormBuilder();
+
+        $fields->name('name')->type('text')->group('w-1/2');
+        $fields->name('tenancy_id')->type('recordpicker')->table('realestate_tenancy')->group('w-1/2');
+        $fields->name('invoice_id')->type('recordpicker')->table('account_invoice')->group('w-1/2');
+        $fields->name('reading')->type('text')->group('w-1/2');
+        $fields->name('units')->type('text')->group('w-1/2');
+        $fields->name('billing_period')->type('text')->group('w-1/2');
+        $fields->name('billing_date')->type('date')->group('w-1/2');
+
+        return $fields;
+
+    }
+
+    public function filter()
+    {
+        // listing view fields
+        $fields = new FormBuilder();
+
+        $fields->name('name')->type('text')->group('w-1/6');
+        $fields->name('tenancy_id')->type('recordpicker')->table('realestate_tenancy')->group('w-1/6');
+        $fields->name('invoice_id')->type('recordpicker')->table('account_invoice')->group('w-1/6');
+        $fields->name('reading')->type('text')->group('w-1/6');
+        $fields->name('units')->type('text')->group('w-1/6');
+        $fields->name('billing_period')->type('text')->group('w-1/6');
+        $fields->name('billing_date')->type('date')->group('w-1/6');
+
+        return $fields;
+
+    }
     /**
      * List of fields for managing postings.
      *
@@ -29,7 +81,6 @@ class ReadingWater extends BaseModel
         $table->char('billing_period', 20)->nullable();
         $table->dateTime('billing_date')->nullable();
     }
-
 
     public function post_migration(Blueprint $table)
     {

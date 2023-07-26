@@ -2,9 +2,11 @@
 
 namespace Modules\Realestate\Entities;
 
-use Modules\Base\Entities\BaseModel;
 use Illuminate\Database\Schema\Blueprint;
 use Modules\Base\Classes\Migration;
+use Modules\Base\Entities\BaseModel;
+use Modules\Core\Classes\Views\FormBuilder;
+use Modules\Core\Classes\Views\ListTable;
 
 class Building extends BaseModel
 {
@@ -13,6 +15,61 @@ class Building extends BaseModel
     public $migrationDependancy = ['realestate_estate'];
     protected $table = "realestate_building";
 
+    public function listTable()
+    {
+        // listing view fields
+        $fields = new ListTable();
+
+        $fields->name('name')->type('text')->ordering(true);
+        $fields->name('estate_id')->type('recordpicker')->table('realestate_estate')->ordering(true);
+        $fields->name('type')->type('text')->ordering(true);
+        $fields->name('description')->type('text')->ordering(true);
+        $fields->name('units')->type('text')->ordering(true);
+        $fields->name('default_deposit')->type('text')->ordering(true);
+        $fields->name('default_goodwill')->type('text')->ordering(true);
+        $fields->name('default_amount')->type('text')->ordering(true);
+        $fields->name('is_full')->type('text')->ordering(true);
+
+        return $fields;
+
+    }
+
+    public function formBuilder()
+    {
+        // listing view fields
+        $fields = new FormBuilder();
+
+        $fields->name('name')->type('text')->group('w-1/2');
+        $fields->name('estate_id')->type('recordpicker')->table('realestate_estate')->group('w-1/2');
+        $fields->name('type')->type('text')->group('w-1/2');
+        $fields->name('description')->type('text')->group('w-1/2');
+        $fields->name('units')->type('text')->group('w-1/2');
+        $fields->name('default_deposit')->type('text')->group('w-1/2');
+        $fields->name('default_goodwill')->type('text')->group('w-1/2');
+        $fields->name('default_amount')->type('text')->group('w-1/2');
+        $fields->name('is_full')->type('text')->group('w-1/2');
+
+        return $fields;
+
+    }
+
+    public function filter()
+    {
+        // listing view fields
+        $fields = new FormBuilder();
+
+        $fields->name('name')->type('text')->group('w-1/6');
+        $fields->name('estate_id')->type('recordpicker')->table('realestate_estate')->group('w-1/6');
+        $fields->name('type')->type('text')->group('w-1/6');
+        $fields->name('units')->type('text')->group('w-1/6');
+        $fields->name('default_deposit')->type('text')->group('w-1/6');
+        $fields->name('default_goodwill')->type('text')->group('w-1/6');
+        $fields->name('default_amount')->type('text')->group('w-1/6');
+        $fields->name('is_full')->type('text')->group('w-1/6');
+
+        return $fields;
+
+    }
     /**
      * List of fields for managing postings.
      *
@@ -32,7 +89,6 @@ class Building extends BaseModel
         $table->double('default_amount', 8, 2)->nullable();
         $table->boolean('is_full')->default(0)->nullable();
     }
-
 
     public function post_migration(Blueprint $table)
     {

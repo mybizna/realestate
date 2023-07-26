@@ -2,9 +2,11 @@
 
 namespace Modules\Realestate\Entities;
 
-use Modules\Base\Entities\BaseModel;
 use Illuminate\Database\Schema\Blueprint;
 use Modules\Base\Classes\Migration;
+use Modules\Base\Entities\BaseModel;
+use Modules\Core\Classes\Views\FormBuilder;
+use Modules\Core\Classes\Views\ListTable;
 
 class UnitSetup extends BaseModel
 {
@@ -13,6 +15,44 @@ class UnitSetup extends BaseModel
     public $migrationDependancy = ['realestate_unit'];
     protected $table = "realestate_unit_setup";
 
+    public function listTable()
+    {
+        // listing view fields
+        $fields = new ListTable();
+
+        $fields->name('title')->type('text')->ordering(true);
+        $fields->name('unit_id')->type('recordpicker')->table('realestate_unit')->ordering(true);
+        $fields->name('amount')->type('text')->ordering(true);
+
+        return $fields;
+
+    }
+
+    public function formBuilder()
+    {
+        // listing view fields
+        $fields = new FormBuilder();
+
+        $fields->name('title')->type('text')->group('w-1/2');
+        $fields->name('unit_id')->type('recordpicker')->table('realestate_unit')->group('w-1/2');
+        $fields->name('amount')->type('text')->group('w-1/2');
+
+        return $fields;
+
+    }
+
+    public function filter()
+    {
+        // listing view fields
+        $fields = new FormBuilder();
+
+        $fields->name('title')->type('text')->group('w-1/6');
+        $fields->name('unit_id')->type('recordpicker')->table('realestate_unit')->group('w-1/6');
+        $fields->name('amount')->type('text')->group('w-1/6');
+
+        return $fields;
+
+    }
     /**
      * List of fields for managing postings.
      *
