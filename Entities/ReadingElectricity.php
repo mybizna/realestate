@@ -4,18 +4,32 @@ namespace Modules\Realestate\Entities;
 
 use Illuminate\Database\Schema\Blueprint;
 use Modules\Base\Classes\Migration;
+use Modules\Base\Classes\Views\FormBuilder;
+use Modules\Base\Classes\Views\ListTable;
 use Modules\Base\Entities\BaseModel;
-use Modules\Core\Classes\Views\FormBuilder;
-use Modules\Core\Classes\Views\ListTable;
 
 class ReadingElectricity extends BaseModel
 {
 
+    /**
+     * The fields that can be filled
+     * @var array<string>
+     */
     protected $fillable = ['name', 'tenancy_id', 'invoice_id', 'reading', 'units', 'billing_period', 'billing_date'];
-    public $migrationDependancy = ['realestate_tenancy', 'account_invoice'];
+
+    /**
+     * List of tables names that are need in this model during migration.
+     * @var array<string>
+     */
+    public array $migrationDependancy = ['realestate_tenancy', 'account_invoice'];
+
+    /**
+     * The table associated with the model.
+     * @var string
+     */
     protected $table = "realestate_reading_electricity";
 
-    public function listTable()
+    public function listTable(): ListTable
     {
         // listing view fields
         $fields = new ListTable();
@@ -49,7 +63,7 @@ class ReadingElectricity extends BaseModel
 
     }
 
-    public function filter()
+    public function filter(): FormBuilder
     {
         // listing view fields
         $fields = new FormBuilder();
@@ -62,7 +76,7 @@ class ReadingElectricity extends BaseModel
 
     }
     /**
-     * List of fields for managing postings.
+     * List of fields to be migrated to the datebase when creating or updating model during migration.
      *
      * @param Blueprint $table
      * @return void

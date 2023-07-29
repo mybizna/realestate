@@ -2,22 +2,34 @@
 
 namespace Modules\Realestate\Entities;
 
-use Modules\Base\Entities\BaseModel;
 use Illuminate\Database\Schema\Blueprint;
 use Modules\Base\Classes\Migration;
-
-use Modules\Core\Classes\Views\ListTable;
-use Modules\Core\Classes\Views\FormBuilder;
+use Modules\Base\Classes\Views\FormBuilder;
+use Modules\Base\Classes\Views\ListTable;
+use Modules\Base\Entities\BaseModel;
 
 class Region extends BaseModel
 {
-
+    /**
+     * The fields that can be filled
+     * @var array<string>
+     */
     protected $fillable = ['name', 'description', 'country_id', 'state_id'];
-    public $migrationDependancy = ['core_country', 'core_state'];
+
+    /**
+     * List of tables names that are need in this model during migration.
+     * @var array<string>
+     */
+    public array $migrationDependancy = ['core_country', 'core_state'];
+
+    /**
+     * The table associated with the model.
+     * @var string
+     */
     protected $table = "realestate_region";
 
-
-    public function listTable(){
+    public function listTable(): ListTable
+    {
         // listing view fields
         $fields = new ListTable();
 
@@ -28,8 +40,9 @@ class Region extends BaseModel
         return $fields;
 
     }
-    
-    public function formBuilder(){
+
+    public function formBuilder(): FormBuilder
+    {
         // listing view fields
         $fields = new FormBuilder();
 
@@ -42,21 +55,21 @@ class Region extends BaseModel
 
     }
 
-    public function filter(){
+    public function filter(): FormBuilder
+    {
         // listing view fields
         $fields = new FormBuilder();
 
         $fields->name('name')->type('text')->group('w-1/6');
         $fields->name('country_id')->type('recordpicker')->table('core_country')->group('w-1/6');
         $fields->name('state_id')->type('recordpicker')->table('core_state')->group('w-1/6');
-        
 
         return $fields;
 
     }
-    
+
     /**
-     * List of fields for managing postings.
+     * List of fields to be migrated to the datebase when creating or updating model during migration.
      *
      * @param Blueprint $table
      * @return void

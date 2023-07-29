@@ -4,18 +4,31 @@ namespace Modules\Realestate\Entities;
 
 use Illuminate\Database\Schema\Blueprint;
 use Modules\Base\Classes\Migration;
+use Modules\Base\Classes\Views\FormBuilder;
+use Modules\Base\Classes\Views\ListTable;
 use Modules\Base\Entities\BaseModel;
-use Modules\Core\Classes\Views\FormBuilder;
-use Modules\Core\Classes\Views\ListTable;
 
 class TenancyService extends BaseModel
 {
-
+    /**
+     * The fields that can be filled
+     * @var array<string>
+     */
     protected $fillable = ['title', 'tenancy_id', 'amount', 'billing_date'];
-    public $migrationDependancy = ['realestate_tenancy'];
+
+    /**
+     * List of tables names that are need in this model during migration.
+     * @var array<string>
+     */
+    public array $migrationDependancy = ['realestate_tenancy'];
+
+    /**
+     * The table associated with the model.
+     * @var string
+     */
     protected $table = "realestate_tenancy_service";
 
-    public function listTable()
+    public function listTable(): ListTable
     {
         // listing view fields
         $fields = new ListTable();
@@ -43,7 +56,7 @@ class TenancyService extends BaseModel
 
     }
 
-    public function filter()
+    public function filter(): FormBuilder
     {
         // listing view fields
         $fields = new FormBuilder();
@@ -57,7 +70,7 @@ class TenancyService extends BaseModel
 
     }
     /**
-     * List of fields for managing postings.
+     * List of fields to be migrated to the datebase when creating or updating model during migration.
      *
      * @param Blueprint $table
      * @return void
