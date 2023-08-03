@@ -12,22 +12,30 @@ class TenancyService extends BaseModel
 {
     /**
      * The fields that can be filled
+     *
      * @var array<string>
      */
     protected $fillable = ['title', 'tenancy_id', 'amount', 'billing_date'];
 
     /**
      * List of tables names that are need in this model during migration.
+     *
      * @var array<string>
      */
     public array $migrationDependancy = ['realestate_tenancy'];
 
     /**
      * The table associated with the model.
+     *
      * @var string
      */
     protected $table = "realestate_tenancy_service";
 
+    /**
+     * Function for defining list of fields in table view.
+     *
+     * @return ListTable
+     */
     public function listTable(): ListTable
     {
         // listing view fields
@@ -42,7 +50,12 @@ class TenancyService extends BaseModel
 
     }
 
-    public function formBuilder()
+    /**
+     * Function for defining list of fields in form view.
+     * 
+     * @return FormBuilder
+     */
+    public function formBuilder(): FormBuilder
     {
         // listing view fields
         $fields = new FormBuilder();
@@ -56,6 +69,11 @@ class TenancyService extends BaseModel
 
     }
 
+    /**
+     * Function for defining list of fields in filter view.
+     * 
+     * @return FormBuilder
+     */
     public function filter(): FormBuilder
     {
         // listing view fields
@@ -69,13 +87,14 @@ class TenancyService extends BaseModel
         return $fields;
 
     }
+    
     /**
      * List of fields to be migrated to the datebase when creating or updating model during migration.
      *
      * @param Blueprint $table
      * @return void
      */
-    public function migration(Blueprint $table)
+    public function migration(Blueprint $table): void
     {
 
         $table->increments('id');
@@ -85,7 +104,14 @@ class TenancyService extends BaseModel
         $table->dateTime('billing_date')->nullable();
     }
 
-    public function post_migration(Blueprint $table)
+    /**
+     * Handle post migration processes for adding foreign keys.
+     *
+     * @param Blueprint $table
+     *
+     * @return void
+     */
+    public function post_migration(Blueprint $table): void
     {
         Migration::addForeign($table, 'realestate_tenancy', 'tenancy_id');
     }

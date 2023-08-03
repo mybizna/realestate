@@ -12,22 +12,30 @@ class Building extends BaseModel
 {
     /**
      * The fields that can be filled
+     *
      * @var array<string>
      */
     protected $fillable = ['name', 'estate_id', 'type', 'description', 'units', 'default_deposit', 'default_goodwill', 'default_amount', 'is_full'];
 
     /**
      * List of tables names that are need in this model during migration.
+     *
      * @var array<string>
      */
     public array $migrationDependancy = ['realestate_estate'];
 
     /**
      * The table associated with the model.
+     *
      * @var string
      */
     protected $table = "realestate_building";
 
+    /**
+     * Function for defining list of fields in table view.
+     *
+     * @return ListTable
+     */
     public function listTable(): ListTable
     {
         // listing view fields
@@ -47,7 +55,12 @@ class Building extends BaseModel
 
     }
 
-    public function formBuilder()
+    /**
+     * Function for defining list of fields in form view.
+     * 
+     * @return FormBuilder
+     */
+    public function formBuilder(): FormBuilder
     {
         // listing view fields
         $fields = new FormBuilder();
@@ -66,6 +79,11 @@ class Building extends BaseModel
 
     }
 
+    /**
+     * Function for defining list of fields in filter view.
+     * 
+     * @return FormBuilder
+     */
     public function filter(): FormBuilder
     {
         // listing view fields
@@ -89,7 +107,7 @@ class Building extends BaseModel
      * @param Blueprint $table
      * @return void
      */
-    public function migration(Blueprint $table)
+    public function migration(Blueprint $table): void
     {
         $table->increments('id');
         $table->string('name');
@@ -103,7 +121,14 @@ class Building extends BaseModel
         $table->boolean('is_full')->default(0)->nullable();
     }
 
-    public function post_migration(Blueprint $table)
+    /**
+     * Handle post migration processes for adding foreign keys.
+     *
+     * @param Blueprint $table
+     *
+     * @return void
+     */
+    public function post_migration(Blueprint $table): void
     {
         Migration::addForeign($table, 'realestate_estate', 'estate_id');
     }
