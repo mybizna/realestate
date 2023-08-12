@@ -18,6 +18,13 @@ class TenancyService extends BaseModel
     protected $fillable = ['title', 'tenancy_id', 'amount', 'billing_date'];
 
     /**
+     * The fields that are to be render when performing relationship queries.
+     *
+     * @var array<string>
+     */
+    public $rec_names = ['title'];
+
+    /**
      * List of tables names that are need in this model during migration.
      *
      * @var array<string>
@@ -52,7 +59,7 @@ class TenancyService extends BaseModel
 
     /**
      * Function for defining list of fields in form view.
-     * 
+     *
      * @return FormBuilder
      */
     public function formBuilder(): FormBuilder
@@ -71,7 +78,7 @@ class TenancyService extends BaseModel
 
     /**
      * Function for defining list of fields in filter view.
-     * 
+     *
      * @return FormBuilder
      */
     public function filter(): FormBuilder
@@ -87,7 +94,7 @@ class TenancyService extends BaseModel
         return $fields;
 
     }
-    
+
     /**
      * List of fields to be migrated to the datebase when creating or updating model during migration.
      *
