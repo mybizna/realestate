@@ -49,8 +49,8 @@ class Tenancy extends BaseModel
         $fields = new ListTable();
 
         $fields->name('title')->type('text')->ordering(true);
-        $fields->name('unit_id')->type('recordpicker')->table('realestate_unit')->ordering(true);
-        $fields->name('partner_id')->type('recordpicker')->table('partner')->ordering(true);
+        $fields->name('unit_id')->type('recordpicker')->table(['realestate', 'unit'])->ordering(true);
+        $fields->name('partner_id')->type('recordpicker')->table(['partner'])->ordering(true);
         $fields->name('type')->type('select')->options(['weekly' => 'Weekly', 'bi_weekly' => 'Bi Weekly', 'monthly' => 'Monthly', 'quarterly' => 'Quarterly', 'bi_annually' => 'Bi Annually', 'annually' => 'Annually'])->ordering(true);
         $fields->name('amount')->type('text')->ordering(true);
         $fields->name('rooms')->type('text')->ordering(true);
@@ -74,8 +74,8 @@ class Tenancy extends BaseModel
 
         $fields->name('title')->type('text')->group('w-1/2');
         $fields->name('description')->type('text')->group('w-1/2');
-        $fields->name('unit_id')->type('recordpicker')->table('realestate_unit')->group('w-1/2');
-        $fields->name('partner_id')->type('recordpicker')->table('partner')->group('w-1/2');
+        $fields->name('unit_id')->type('recordpicker')->table(['realestate', 'unit'])->group('w-1/2');
+        $fields->name('partner_id')->type('recordpicker')->table(['partner'])->group('w-1/2');
         $fields->name('type')->type('select')->options(['weekly' => 'Weekly', 'bi_weekly' => 'Bi Weekly', 'monthly' => 'Monthly', 'quarterly' => 'Quarterly', 'bi_annually' => 'Bi Annually', 'annually' => 'Annually'])->group('w-1/2');
         $fields->name('amount')->type('text')->group('w-1/2');
         $fields->name('deposit')->type('text')->group('w-1/2');
@@ -105,8 +105,8 @@ class Tenancy extends BaseModel
 
         $fields->name('title')->type('text')->group('w-1/6');
         $fields->name('description')->type('text')->group('w-1/6');
-        $fields->name('unit_id')->type('recordpicker')->table('realestate_unit')->group('w-1/6');
-        $fields->name('partner_id')->type('recordpicker')->table('partner')->group('w-1/6');
+        $fields->name('unit_id')->type('recordpicker')->table(['realestate', 'unit'])->group('w-1/6');
+        $fields->name('partner_id')->type('recordpicker')->table(['partner'])->group('w-1/6');
         $fields->name('type')->type('select')->options(['weekly' => 'Weekly', 'bi_weekly' => 'Bi Weekly', 'monthly' => 'Monthly', 'quarterly' => 'Quarterly', 'bi_annually' => 'Bi Annually', 'annually' => 'Annually'])->group('w-1/6');
         $fields->name('amount')->type('text')->group('w-1/6');
 

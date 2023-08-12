@@ -49,8 +49,8 @@ class Region extends BaseModel
         $fields = new ListTable();
 
         $fields->name('name')->type('text')->ordering(true);
-        $fields->name('country_id')->type('recordpicker')->table('core_country')->ordering(true);
-        $fields->name('state_id')->type('recordpicker')->table('core_state')->ordering(true);
+        $fields->name('country_id')->type('recordpicker')->table(['core', 'country'])->ordering(true);
+        $fields->name('state_id')->type('recordpicker')->table(['core', 'state'])->ordering(true);
 
         return $fields;
 
@@ -67,8 +67,8 @@ class Region extends BaseModel
         $fields = new FormBuilder();
 
         $fields->name('name')->type('text')->group('w-1/2');
-        $fields->name('country_id')->type('recordpicker')->table('core_country')->group('w-1/2');
-        $fields->name('state_id')->type('recordpicker')->table('core_state')->group('w-1/2');
+        $fields->name('country_id')->type('recordpicker')->table(['core', 'country'])->group('w-1/2');
+        $fields->name('state_id')->type('recordpicker')->table(['core', 'state'])->group('w-1/2');
         $fields->name('description')->type('text')->group('w-1/2');
 
         return $fields;
@@ -86,8 +86,8 @@ class Region extends BaseModel
         $fields = new FormBuilder();
 
         $fields->name('name')->type('text')->group('w-1/6');
-        $fields->name('country_id')->type('recordpicker')->table('core_country')->group('w-1/6');
-        $fields->name('state_id')->type('recordpicker')->table('core_state')->group('w-1/6');
+        $fields->name('country_id')->type('recordpicker')->table(['core', 'country'])->group('w-1/6');
+        $fields->name('state_id')->type('recordpicker')->table(['core', 'state'])->group('w-1/6');
 
         return $fields;
 

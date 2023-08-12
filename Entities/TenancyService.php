@@ -49,7 +49,7 @@ class TenancyService extends BaseModel
         $fields = new ListTable();
 
         $fields->name('title')->type('text')->ordering(true);
-        $fields->name('tenancy_id')->type('recordpicker')->table('realestate_tenancy')->ordering(true);
+        $fields->name('tenancy_id')->type('recordpicker')->table(['realestate', 'tenancy'])->ordering(true);
         $fields->name('amount')->type('text')->ordering(true);
         $fields->name('billing_date')->type('date')->ordering(true);
 
@@ -68,7 +68,7 @@ class TenancyService extends BaseModel
         $fields = new FormBuilder();
 
         $fields->name('title')->type('text')->group('w-1/2');
-        $fields->name('tenancy_id')->type('recordpicker')->table('realestate_tenancy')->group('w-1/2');
+        $fields->name('tenancy_id')->type('recordpicker')->table(['realestate', 'tenancy'])->group('w-1/2');
         $fields->name('amount')->type('text')->group('w-1/2');
         $fields->name('billing_date')->type('date')->group('w-1/2');
 
@@ -87,7 +87,7 @@ class TenancyService extends BaseModel
         $fields = new FormBuilder();
 
         $fields->name('title')->type('text')->group('w-1/6');
-        $fields->name('tenancy_id')->type('recordpicker')->table('realestate_tenancy')->group('w-1/6');
+        $fields->name('tenancy_id')->type('recordpicker')->table(['realestate', 'tenancy'])->group('w-1/6');
         $fields->name('amount')->type('text')->group('w-1/6');
         $fields->name('billing_date')->type('date')->group('w-1/6');
 

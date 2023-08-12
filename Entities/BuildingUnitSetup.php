@@ -49,7 +49,7 @@ class BuildingUnitSetup extends BaseModel
         $fields = new ListTable();
 
         $fields->name('title')->type('text')->ordering(true);
-        $fields->name('building_id')->type('recordpicker')->table('realestate_building')->ordering(true);
+        $fields->name('building_id')->type('recordpicker')->table(['realestate', 'building'])->ordering(true);
         $fields->name('amount')->type('text')->ordering(true);
 
         return $fields;
@@ -67,7 +67,7 @@ class BuildingUnitSetup extends BaseModel
         $fields = new FormBuilder();
 
         $fields->name('title')->type('text')->group('w-1/2');
-        $fields->name('building_id')->type('recordpicker')->table('realestate_building')->group('w-1/2');
+        $fields->name('building_id')->type('recordpicker')->table(['realestate', 'building'])->group('w-1/2');
         $fields->name('amount')->type('text')->group('w-1/2');
 
         return $fields;
@@ -85,7 +85,7 @@ class BuildingUnitSetup extends BaseModel
         $fields = new FormBuilder();
 
         $fields->name('title')->type('text')->group('w-1/6');
-        $fields->name('building_id')->type('recordpicker')->table('realestate_building')->group('w-1/6');
+        $fields->name('building_id')->type('recordpicker')->table(['realestate', 'building'])->group('w-1/6');
 
         return $fields;
 

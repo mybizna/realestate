@@ -49,7 +49,7 @@ class Estate extends BaseModel
         $fields = new ListTable();
 
         $fields->name('name')->type('text')->ordering(true);
-        $fields->name('town_id')->type('recordpicker')->table('realestate_town')->ordering(true);
+        $fields->name('town_id')->type('recordpicker')->table(['realestate', 'town'])->ordering(true);
 
         return $fields;
 
@@ -66,7 +66,7 @@ class Estate extends BaseModel
         $fields = new FormBuilder();
 
         $fields->name('name')->type('text')->group('w-1/2');
-        $fields->name('town_id')->type('recordpicker')->table('realestate_town')->group('w-1/2');
+        $fields->name('town_id')->type('recordpicker')->table(['realestate', 'town'])->group('w-1/2');
         $fields->name('description')->type('text')->group('w-full');
 
         return $fields;
@@ -84,7 +84,7 @@ class Estate extends BaseModel
         $fields = new FormBuilder();
 
         $fields->name('name')->type('text')->group('w-1/6');
-        $fields->name('town_id')->type('recordpicker')->table('realestate_town')->group('w-1/6');
+        $fields->name('town_id')->type('recordpicker')->table(['realestate', 'town'])->group('w-1/6');
 
         return $fields;
 

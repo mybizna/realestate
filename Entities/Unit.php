@@ -49,7 +49,7 @@ class Unit extends BaseModel
         $fields = new ListTable();
 
         $fields->name('title')->type('text')->ordering(true);
-        $fields->name('building_id')->type('recordpicker')->table('realestate_building')->ordering(true);
+        $fields->name('building_id')->type('recordpicker')->table(['realestate', 'building'])->ordering(true);
         $fields->name('type')->type('select')->ordering(true);
         $fields->name('amount')->type('text')->ordering(true);
         $fields->name('deposit')->type('text')->ordering(true);
@@ -73,7 +73,7 @@ class Unit extends BaseModel
         $fields = new FormBuilder();
 
         $fields->name('title')->type('text')->group('w-1/2');
-        $fields->name('building_id')->type('recordpicker')->table('realestate_building')->group('w-1/2');
+        $fields->name('building_id')->type('recordpicker')->table(['realestate', 'building'])->group('w-1/2');
         $fields->name('type')->type('select')->options(['single' => 'Single', 'bedsitter' => 'Bedsitter', 'one_bedroom' => 'One Bedroom', 'two_bedroom' => 'Two Bedroom', 'three_bedroom' => 'Three Bedroom', 'four_bedroom' => 'Four Bedroom'])->group('w-1/2');
         $fields->name('amount')->type('text')->group('w-1/2');
         $fields->name('deposit')->type('text')->group('w-1/2');
@@ -98,7 +98,7 @@ class Unit extends BaseModel
         $fields = new FormBuilder();
 
         $fields->name('title')->type('text')->group('w-1/6');
-        $fields->name('building_id')->type('recordpicker')->table('realestate_building')->group('w-1/6');
+        $fields->name('building_id')->type('recordpicker')->table(['realestate', 'building'])->group('w-1/6');
         $fields->name('type')->type('select')->options(['single' => 'Single', 'bedsitter' => 'Bedsitter', 'one_bedroom' => 'One Bedroom', 'two_bedroom' => 'Two Bedroom', 'three_bedroom' => 'Three Bedroom', 'four_bedroom' => 'Four Bedroom'])->group('w-1/6');
         $fields->name('is_full')->type('switch')->group('w-1/6');
 

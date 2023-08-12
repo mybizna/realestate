@@ -49,7 +49,7 @@ class Building extends BaseModel
         $fields = new ListTable();
 
         $fields->name('name')->type('text')->ordering(true);
-        $fields->name('estate_id')->type('recordpicker')->table('realestate_estate')->ordering(true);
+        $fields->name('estate_id')->type('recordpicker')->table(['realestate', 'estate'])->ordering(true);
         $fields->name('type')->type('text')->ordering(true);
         $fields->name('description')->type('text')->ordering(true);
         $fields->name('units')->type('text')->ordering(true);
@@ -73,7 +73,7 @@ class Building extends BaseModel
         $fields = new FormBuilder();
 
         $fields->name('name')->type('text')->group('w-1/2');
-        $fields->name('estate_id')->type('recordpicker')->table('realestate_estate')->group('w-1/2');
+        $fields->name('estate_id')->type('recordpicker')->table(['realestate', 'estate'])->group('w-1/2');
         $fields->name('type')->type('text')->group('w-1/2');
         $fields->name('description')->type('text')->group('w-1/2');
         $fields->name('units')->type('text')->group('w-1/2');
@@ -97,7 +97,7 @@ class Building extends BaseModel
         $fields = new FormBuilder();
 
         $fields->name('name')->type('text')->group('w-1/6');
-        $fields->name('estate_id')->type('recordpicker')->table('realestate_estate')->group('w-1/6');
+        $fields->name('estate_id')->type('recordpicker')->table(['realestate', 'estate'])->group('w-1/6');
         $fields->name('type')->type('text')->group('w-1/6');
         $fields->name('units')->type('text')->group('w-1/6');
         $fields->name('default_deposit')->type('text')->group('w-1/6');

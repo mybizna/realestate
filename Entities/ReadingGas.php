@@ -49,8 +49,8 @@ class ReadingGas extends BaseModel
         $fields = new ListTable();
 
         $fields->name('name')->type('text')->ordering(true);
-        $fields->name('tenancy_id')->type('recordpicker')->table('realestate_tenancy')->ordering(true);
-        $fields->name('invoice_id')->type('recordpicker')->table('account_invoice')->ordering(true);
+        $fields->name('tenancy_id')->type('recordpicker')->table(['realestate', 'tenancy'])->ordering(true);
+        $fields->name('invoice_id')->type('recordpicker')->table(['account', 'invoice'])->ordering(true);
         $fields->name('reading')->type('text')->ordering(true);
         $fields->name('units')->type('text')->ordering(true);
         $fields->name('billing_period')->type('text')->ordering(true);
@@ -71,8 +71,8 @@ class ReadingGas extends BaseModel
         $fields = new FormBuilder();
 
         $fields->name('name')->type('text')->group('w-1/2');
-        $fields->name('tenancy_id')->type('recordpicker')->table('realestate_tenancy')->group('w-1/2');
-        $fields->name('invoice_id')->type('recordpicker')->table('account_invoice')->group('w-1/2');
+        $fields->name('tenancy_id')->type('recordpicker')->table(['realestate', 'tenancy'])->group('w-1/2');
+        $fields->name('invoice_id')->type('recordpicker')->table(['account', 'invoice'])->group('w-1/2');
         $fields->name('reading')->type('text')->group('w-1/2');
         $fields->name('units')->type('text')->group('w-1/2');
         $fields->name('billing_period')->type('text')->group('w-1/2');
@@ -93,8 +93,8 @@ class ReadingGas extends BaseModel
         $fields = new FormBuilder();
 
         $fields->name('name')->type('text')->group('w-1/6');
-        $fields->name('tenancy_id')->type('recordpicker')->table('realestate_tenancy')->group('w-1/6');
-        $fields->name('invoice_id')->type('recordpicker')->table('account_invoice')->group('w-1/6');
+        $fields->name('tenancy_id')->type('recordpicker')->table(['realestate', 'tenancy'])->group('w-1/6');
+        $fields->name('invoice_id')->type('recordpicker')->table(['account', 'invoice'])->group('w-1/6');
         $fields->name('billing_period')->type('text')->group('w-1/6');
         $fields->name('billing_date')->type('date')->group('w-1/6');
 
