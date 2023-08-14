@@ -48,13 +48,13 @@ class ReadingGas extends BaseModel
         // listing view fields
         $fields = new ListTable();
 
-        $fields->name('name')->type('text')->ordering(true);
-        $fields->name('tenancy_id')->type('recordpicker')->table(['realestate', 'tenancy'])->ordering(true);
-        $fields->name('invoice_id')->type('recordpicker')->table(['account', 'invoice'])->ordering(true);
-        $fields->name('reading')->type('text')->ordering(true);
-        $fields->name('units')->type('text')->ordering(true);
-        $fields->name('billing_period')->type('text')->ordering(true);
-        $fields->name('billing_date')->type('date')->ordering(true);
+        $fields->name('name')->html('text')->ordering(true);
+        $fields->name('tenancy_id')->html('recordpicker')->table(['realestate', 'tenancy'])->ordering(true);
+        $fields->name('invoice_id')->html('recordpicker')->table(['account', 'invoice'])->ordering(true);
+        $fields->name('reading')->html('text')->ordering(true);
+        $fields->name('units')->html('text')->ordering(true);
+        $fields->name('billing_period')->html('text')->ordering(true);
+        $fields->name('billing_date')->html('date')->ordering(true);
 
         return $fields;
 
@@ -70,13 +70,13 @@ class ReadingGas extends BaseModel
         // listing view fields
         $fields = new FormBuilder();
 
-        $fields->name('name')->type('text')->group('w-1/2');
-        $fields->name('tenancy_id')->type('recordpicker')->table(['realestate', 'tenancy'])->group('w-1/2');
-        $fields->name('invoice_id')->type('recordpicker')->table(['account', 'invoice'])->group('w-1/2');
-        $fields->name('reading')->type('text')->group('w-1/2');
-        $fields->name('units')->type('text')->group('w-1/2');
-        $fields->name('billing_period')->type('text')->group('w-1/2');
-        $fields->name('billing_date')->type('date')->group('w-1/2');
+        $fields->name('name')->html('text')->group('w-1/2');
+        $fields->name('tenancy_id')->html('recordpicker')->table(['realestate', 'tenancy'])->group('w-1/2');
+        $fields->name('invoice_id')->html('recordpicker')->table(['account', 'invoice'])->group('w-1/2');
+        $fields->name('reading')->html('text')->group('w-1/2');
+        $fields->name('units')->html('text')->group('w-1/2');
+        $fields->name('billing_period')->html('text')->group('w-1/2');
+        $fields->name('billing_date')->html('date')->group('w-1/2');
 
         return $fields;
 
@@ -92,11 +92,11 @@ class ReadingGas extends BaseModel
         // listing view fields
         $fields = new FormBuilder();
 
-        $fields->name('name')->type('text')->group('w-1/6');
-        $fields->name('tenancy_id')->type('recordpicker')->table(['realestate', 'tenancy'])->group('w-1/6');
-        $fields->name('invoice_id')->type('recordpicker')->table(['account', 'invoice'])->group('w-1/6');
-        $fields->name('billing_period')->type('text')->group('w-1/6');
-        $fields->name('billing_date')->type('date')->group('w-1/6');
+        $fields->name('name')->html('text')->group('w-1/6');
+        $fields->name('tenancy_id')->html('recordpicker')->table(['realestate', 'tenancy'])->group('w-1/6');
+        $fields->name('invoice_id')->html('recordpicker')->table(['account', 'invoice'])->group('w-1/6');
+        $fields->name('billing_period')->html('text')->group('w-1/6');
+        $fields->name('billing_date')->html('date')->group('w-1/6');
 
         return $fields;
 
@@ -109,13 +109,13 @@ class ReadingGas extends BaseModel
      */
     public function migration(Blueprint $table): void
     {
-        $table->increments('id');
-        $table->foreignId('tenancy_id')->nullable();
-        $table->foreignId('invoice_id')->nullable();
-        $table->integer('reading');
-        $table->integer('units');
-        $table->char('billing_period', 20)->nullable();
-        $table->dateTime('billing_date')->nullable();
+        $this->fields->increments('id');
+        $this->fields->foreignId('tenancy_id')->nullable();
+        $this->fields->foreignId('invoice_id')->nullable();
+        $this->fields->integer('reading');
+        $this->fields->integer('units');
+        $this->fields->char('billing_period', 20)->nullable();
+        $this->fields->dateTime('billing_date')->nullable();
     }
 
     /**

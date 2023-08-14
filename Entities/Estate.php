@@ -48,8 +48,8 @@ class Estate extends BaseModel
         // listing view fields
         $fields = new ListTable();
 
-        $fields->name('name')->type('text')->ordering(true);
-        $fields->name('town_id')->type('recordpicker')->table(['realestate', 'town'])->ordering(true);
+        $fields->name('name')->html('text')->ordering(true);
+        $fields->name('town_id')->html('recordpicker')->table(['realestate', 'town'])->ordering(true);
 
         return $fields;
 
@@ -65,9 +65,9 @@ class Estate extends BaseModel
         // listing view fields
         $fields = new FormBuilder();
 
-        $fields->name('name')->type('text')->group('w-1/2');
-        $fields->name('town_id')->type('recordpicker')->table(['realestate', 'town'])->group('w-1/2');
-        $fields->name('description')->type('text')->group('w-full');
+        $fields->name('name')->html('text')->group('w-1/2');
+        $fields->name('town_id')->html('recordpicker')->table(['realestate', 'town'])->group('w-1/2');
+        $fields->name('description')->html('text')->group('w-full');
 
         return $fields;
 
@@ -83,8 +83,8 @@ class Estate extends BaseModel
         // listing view fields
         $fields = new FormBuilder();
 
-        $fields->name('name')->type('text')->group('w-1/6');
-        $fields->name('town_id')->type('recordpicker')->table(['realestate', 'town'])->group('w-1/6');
+        $fields->name('name')->html('text')->group('w-1/6');
+        $fields->name('town_id')->html('recordpicker')->table(['realestate', 'town'])->group('w-1/6');
 
         return $fields;
 
@@ -97,10 +97,10 @@ class Estate extends BaseModel
      */
     public function migration(Blueprint $table): void
     {
-        $table->increments('id');
-        $table->string('name');
-        $table->string('description')->nullable();
-        $table->foreignId('town_id')->nullable();
+        $this->fields->increments('id');
+        $this->fields->string('name');
+        $this->fields->string('description')->nullable();
+        $this->fields->foreignId('town_id')->nullable();
     }
     /**
      * Handle post migration processes for adding foreign keys.

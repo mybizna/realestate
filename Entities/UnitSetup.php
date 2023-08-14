@@ -48,9 +48,9 @@ class UnitSetup extends BaseModel
         // listing view fields
         $fields = new ListTable();
 
-        $fields->name('title')->type('text')->ordering(true);
-        $fields->name('unit_id')->type('recordpicker')->table(['realestate', 'unit'])->ordering(true);
-        $fields->name('amount')->type('text')->ordering(true);
+        $fields->name('title')->html('text')->ordering(true);
+        $fields->name('unit_id')->html('recordpicker')->table(['realestate', 'unit'])->ordering(true);
+        $fields->name('amount')->html('text')->ordering(true);
 
         return $fields;
 
@@ -66,9 +66,9 @@ class UnitSetup extends BaseModel
         // listing view fields
         $fields = new FormBuilder();
 
-        $fields->name('title')->type('text')->group('w-1/2');
-        $fields->name('unit_id')->type('recordpicker')->table(['realestate', 'unit'])->group('w-1/2');
-        $fields->name('amount')->type('text')->group('w-1/2');
+        $fields->name('title')->html('text')->group('w-1/2');
+        $fields->name('unit_id')->html('recordpicker')->table(['realestate', 'unit'])->group('w-1/2');
+        $fields->name('amount')->html('text')->group('w-1/2');
 
         return $fields;
 
@@ -84,9 +84,9 @@ class UnitSetup extends BaseModel
         // listing view fields
         $fields = new FormBuilder();
 
-        $fields->name('title')->type('text')->group('w-1/6');
-        $fields->name('unit_id')->type('recordpicker')->table(['realestate', 'unit'])->group('w-1/6');
-        $fields->name('amount')->type('text')->group('w-1/6');
+        $fields->name('title')->html('text')->group('w-1/6');
+        $fields->name('unit_id')->html('recordpicker')->table(['realestate', 'unit'])->group('w-1/6');
+        $fields->name('amount')->html('text')->group('w-1/6');
 
         return $fields;
 
@@ -99,10 +99,10 @@ class UnitSetup extends BaseModel
      */
     public function migration(Blueprint $table): void
     {
-        $table->increments('id');
-        $table->string('title');
-        $table->foreignId('unit_id')->nullable();
-        $table->double('amount', 8, 2)->nullable();
+        $this->fields->increments('id');
+        $this->fields->string('title');
+        $this->fields->foreignId('unit_id')->nullable();
+        $this->fields->double('amount', 8, 2)->nullable();
     }
 
     /**

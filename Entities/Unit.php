@@ -48,15 +48,15 @@ class Unit extends BaseModel
         // listing view fields
         $fields = new ListTable();
 
-        $fields->name('title')->type('text')->ordering(true);
-        $fields->name('building_id')->type('recordpicker')->table(['realestate', 'building'])->ordering(true);
-        $fields->name('type')->type('select')->ordering(true);
-        $fields->name('amount')->type('text')->ordering(true);
-        $fields->name('deposit')->type('text')->ordering(true);
-        $fields->name('goodwill')->type('text')->ordering(true);
-        $fields->name('rooms')->type('text')->ordering(true);
-        $fields->name('bathrooms')->type('text')->ordering(true);
-        $fields->name('is_full')->type('switch')->ordering(true);
+        $fields->name('title')->html('text')->ordering(true);
+        $fields->name('building_id')->html('recordpicker')->table(['realestate', 'building'])->ordering(true);
+        $fields->name('type')->html('select')->ordering(true);
+        $fields->name('amount')->html('text')->ordering(true);
+        $fields->name('deposit')->html('text')->ordering(true);
+        $fields->name('goodwill')->html('text')->ordering(true);
+        $fields->name('rooms')->html('text')->ordering(true);
+        $fields->name('bathrooms')->html('text')->ordering(true);
+        $fields->name('is_full')->html('switch')->ordering(true);
 
         return $fields;
 
@@ -72,16 +72,16 @@ class Unit extends BaseModel
         // listing view fields
         $fields = new FormBuilder();
 
-        $fields->name('title')->type('text')->group('w-1/2');
-        $fields->name('building_id')->type('recordpicker')->table(['realestate', 'building'])->group('w-1/2');
-        $fields->name('type')->type('select')->options(['single' => 'Single', 'bedsitter' => 'Bedsitter', 'one_bedroom' => 'One Bedroom', 'two_bedroom' => 'Two Bedroom', 'three_bedroom' => 'Three Bedroom', 'four_bedroom' => 'Four Bedroom'])->group('w-1/2');
-        $fields->name('amount')->type('text')->group('w-1/2');
-        $fields->name('deposit')->type('text')->group('w-1/2');
-        $fields->name('goodwill')->type('text')->group('w-1/2');
-        $fields->name('rooms')->type('text')->group('w-1/2');
-        $fields->name('bathrooms')->type('text')->group('w-1/2');
-        $fields->name('is_full')->type('switch')->group('w-1/2');
-        $fields->name('description')->type('text')->group('w-full');
+        $fields->name('title')->html('text')->group('w-1/2');
+        $fields->name('building_id')->html('recordpicker')->table(['realestate', 'building'])->group('w-1/2');
+        $fields->name('type')->html('select')->options(['single' => 'Single', 'bedsitter' => 'Bedsitter', 'one_bedroom' => 'One Bedroom', 'two_bedroom' => 'Two Bedroom', 'three_bedroom' => 'Three Bedroom', 'four_bedroom' => 'Four Bedroom'])->group('w-1/2');
+        $fields->name('amount')->html('text')->group('w-1/2');
+        $fields->name('deposit')->html('text')->group('w-1/2');
+        $fields->name('goodwill')->html('text')->group('w-1/2');
+        $fields->name('rooms')->html('text')->group('w-1/2');
+        $fields->name('bathrooms')->html('text')->group('w-1/2');
+        $fields->name('is_full')->html('switch')->group('w-1/2');
+        $fields->name('description')->html('text')->group('w-full');
 
         return $fields;
 
@@ -97,10 +97,10 @@ class Unit extends BaseModel
         // listing view fields
         $fields = new FormBuilder();
 
-        $fields->name('title')->type('text')->group('w-1/6');
-        $fields->name('building_id')->type('recordpicker')->table(['realestate', 'building'])->group('w-1/6');
-        $fields->name('type')->type('select')->options(['single' => 'Single', 'bedsitter' => 'Bedsitter', 'one_bedroom' => 'One Bedroom', 'two_bedroom' => 'Two Bedroom', 'three_bedroom' => 'Three Bedroom', 'four_bedroom' => 'Four Bedroom'])->group('w-1/6');
-        $fields->name('is_full')->type('switch')->group('w-1/6');
+        $fields->name('title')->html('text')->group('w-1/6');
+        $fields->name('building_id')->html('recordpicker')->table(['realestate', 'building'])->group('w-1/6');
+        $fields->name('type')->html('select')->options(['single' => 'Single', 'bedsitter' => 'Bedsitter', 'one_bedroom' => 'One Bedroom', 'two_bedroom' => 'Two Bedroom', 'three_bedroom' => 'Three Bedroom', 'four_bedroom' => 'Four Bedroom'])->group('w-1/6');
+        $fields->name('is_full')->html('switch')->group('w-1/6');
 
         return $fields;
 
@@ -113,17 +113,17 @@ class Unit extends BaseModel
      */
     public function migration(Blueprint $table): void
     {
-        $table->increments('id');
-        $table->string('title');
-        $table->string('description')->nullable();
-        $table->foreignId('building_id')->nullable();
-        $table->enum('type', ['single', 'bedsitter', 'one_bedroom', 'two_bedroom', 'three_bedroom', 'four_bedroom'])->default('one_bedroom');
-        $table->double('amount', 8, 2)->nullable();
-        $table->double('deposit', 8, 2)->nullable();
-        $table->double('goodwill', 8, 2)->nullable();
-        $table->string('rooms');
-        $table->string('bathrooms');
-        $table->boolean('is_full')->default(0)->nullable();
+        $this->fields->increments('id');
+        $this->fields->string('title');
+        $this->fields->string('description')->nullable();
+        $this->fields->foreignId('building_id')->nullable();
+        $this->fields->enum('type', ['single', 'bedsitter', 'one_bedroom', 'two_bedroom', 'three_bedroom', 'four_bedroom'])->default('one_bedroom');
+        $this->fields->double('amount', 8, 2)->nullable();
+        $this->fields->double('deposit', 8, 2)->nullable();
+        $this->fields->double('goodwill', 8, 2)->nullable();
+        $this->fields->string('rooms');
+        $this->fields->string('bathrooms');
+        $this->fields->boolean('is_full')->default(0)->nullable();
     }
 
     /**

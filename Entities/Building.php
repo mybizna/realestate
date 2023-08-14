@@ -48,15 +48,15 @@ class Building extends BaseModel
         // listing view fields
         $fields = new ListTable();
 
-        $fields->name('name')->type('text')->ordering(true);
-        $fields->name('estate_id')->type('recordpicker')->table(['realestate', 'estate'])->ordering(true);
-        $fields->name('type')->type('text')->ordering(true);
-        $fields->name('description')->type('text')->ordering(true);
-        $fields->name('units')->type('text')->ordering(true);
-        $fields->name('default_deposit')->type('text')->ordering(true);
-        $fields->name('default_goodwill')->type('text')->ordering(true);
-        $fields->name('default_amount')->type('text')->ordering(true);
-        $fields->name('is_full')->type('text')->ordering(true);
+        $fields->name('name')->html('text')->ordering(true);
+        $fields->name('estate_id')->html('recordpicker')->table(['realestate', 'estate'])->ordering(true);
+        $fields->name('type')->html('text')->ordering(true);
+        $fields->name('description')->html('text')->ordering(true);
+        $fields->name('units')->html('text')->ordering(true);
+        $fields->name('default_deposit')->html('text')->ordering(true);
+        $fields->name('default_goodwill')->html('text')->ordering(true);
+        $fields->name('default_amount')->html('text')->ordering(true);
+        $fields->name('is_full')->html('text')->ordering(true);
 
         return $fields;
 
@@ -72,15 +72,15 @@ class Building extends BaseModel
         // listing view fields
         $fields = new FormBuilder();
 
-        $fields->name('name')->type('text')->group('w-1/2');
-        $fields->name('estate_id')->type('recordpicker')->table(['realestate', 'estate'])->group('w-1/2');
-        $fields->name('type')->type('text')->group('w-1/2');
-        $fields->name('description')->type('text')->group('w-1/2');
-        $fields->name('units')->type('text')->group('w-1/2');
-        $fields->name('default_deposit')->type('text')->group('w-1/2');
-        $fields->name('default_goodwill')->type('text')->group('w-1/2');
-        $fields->name('default_amount')->type('text')->group('w-1/2');
-        $fields->name('is_full')->type('text')->group('w-1/2');
+        $fields->name('name')->html('text')->group('w-1/2');
+        $fields->name('estate_id')->html('recordpicker')->table(['realestate', 'estate'])->group('w-1/2');
+        $fields->name('type')->html('text')->group('w-1/2');
+        $fields->name('description')->html('text')->group('w-1/2');
+        $fields->name('units')->html('text')->group('w-1/2');
+        $fields->name('default_deposit')->html('text')->group('w-1/2');
+        $fields->name('default_goodwill')->html('text')->group('w-1/2');
+        $fields->name('default_amount')->html('text')->group('w-1/2');
+        $fields->name('is_full')->html('text')->group('w-1/2');
 
         return $fields;
 
@@ -96,14 +96,14 @@ class Building extends BaseModel
         // listing view fields
         $fields = new FormBuilder();
 
-        $fields->name('name')->type('text')->group('w-1/6');
-        $fields->name('estate_id')->type('recordpicker')->table(['realestate', 'estate'])->group('w-1/6');
-        $fields->name('type')->type('text')->group('w-1/6');
-        $fields->name('units')->type('text')->group('w-1/6');
-        $fields->name('default_deposit')->type('text')->group('w-1/6');
-        $fields->name('default_goodwill')->type('text')->group('w-1/6');
-        $fields->name('default_amount')->type('text')->group('w-1/6');
-        $fields->name('is_full')->type('text')->group('w-1/6');
+        $fields->name('name')->html('text')->group('w-1/6');
+        $fields->name('estate_id')->html('recordpicker')->table(['realestate', 'estate'])->group('w-1/6');
+        $fields->name('type')->html('text')->group('w-1/6');
+        $fields->name('units')->html('text')->group('w-1/6');
+        $fields->name('default_deposit')->html('text')->group('w-1/6');
+        $fields->name('default_goodwill')->html('text')->group('w-1/6');
+        $fields->name('default_amount')->html('text')->group('w-1/6');
+        $fields->name('is_full')->html('text')->group('w-1/6');
 
         return $fields;
 
@@ -116,16 +116,16 @@ class Building extends BaseModel
      */
     public function migration(Blueprint $table): void
     {
-        $table->increments('id');
-        $table->string('name');
-        $table->foreignId('estate_id')->nullable();
-        $table->enum('type', ['apartment', 'maisonette', 'bungalow'])->default('apartment')->nullable();
-        $table->string('description')->nullable();
-        $table->integer('units')->nullable();
-        $table->double('default_deposit', 8, 2)->nullable();
-        $table->double('default_goodwill', 8, 2)->nullable();
-        $table->double('default_amount', 8, 2)->nullable();
-        $table->boolean('is_full')->default(0)->nullable();
+        $this->fields->increments('id');
+        $this->fields->string('name');
+        $this->fields->foreignId('estate_id')->nullable();
+        $this->fields->enum('type', ['apartment', 'maisonette', 'bungalow'])->default('apartment')->nullable();
+        $this->fields->string('description')->nullable();
+        $this->fields->integer('units')->nullable();
+        $this->fields->double('default_deposit', 8, 2)->nullable();
+        $this->fields->double('default_goodwill', 8, 2)->nullable();
+        $this->fields->double('default_amount', 8, 2)->nullable();
+        $this->fields->boolean('is_full')->default(0)->nullable();
     }
 
     /**

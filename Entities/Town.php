@@ -48,8 +48,8 @@ class Town extends BaseModel
         // listing view fields
         $fields = new ListTable();
 
-        $fields->name('name')->type('text')->ordering(true);
-        $fields->name('region_id')->type('recordpicker')->table(['realestate', 'region'])->ordering(true);
+        $fields->name('name')->html('text')->ordering(true);
+        $fields->name('region_id')->html('recordpicker')->table(['realestate', 'region'])->ordering(true);
 
         return $fields;
 
@@ -65,9 +65,9 @@ class Town extends BaseModel
         // listing view fields
         $fields = new FormBuilder();
 
-        $fields->name('name')->type('text')->group('w-1/2');
-        $fields->name('region_id')->type('recordpicker')->table(['realestate', 'region'])->group('w-1/2');
-        $fields->name('description')->type('text')->group('w-1/2');
+        $fields->name('name')->html('text')->group('w-1/2');
+        $fields->name('region_id')->html('recordpicker')->table(['realestate', 'region'])->group('w-1/2');
+        $fields->name('description')->html('text')->group('w-1/2');
 
         return $fields;
 
@@ -83,8 +83,8 @@ class Town extends BaseModel
         // listing view fields
         $fields = new FormBuilder();
 
-        $fields->name('name')->type('text')->group('w-1/6');
-        $fields->name('region_id')->type('recordpicker')->table(['realestate', 'region'])->group('w-1/6');
+        $fields->name('name')->html('text')->group('w-1/6');
+        $fields->name('region_id')->html('recordpicker')->table(['realestate', 'region'])->group('w-1/6');
 
         return $fields;
 
@@ -97,10 +97,10 @@ class Town extends BaseModel
      */
     public function migration(Blueprint $table): void
     {
-        $table->increments('id');
-        $table->string('name');
-        $table->foreignId('region_id')->nullable();
-        $table->string('description')->nullable();
+        $this->fields->increments('id');
+        $this->fields->string('name');
+        $this->fields->foreignId('region_id')->nullable();
+        $this->fields->string('description')->nullable();
     }
 
     /**

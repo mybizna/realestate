@@ -4,8 +4,6 @@ namespace Modules\Realestate\Entities;
 
 use Illuminate\Database\Schema\Blueprint;
 use Modules\Base\Classes\Migration;
-use Modules\Base\Classes\Views\FormBuilder;
-use Modules\Base\Classes\Views\ListTable;
 use Modules\Base\Entities\BaseModel;
 
 class TenancyService extends BaseModel
@@ -39,87 +37,19 @@ class TenancyService extends BaseModel
     protected $table = "realestate_tenancy_service";
 
     /**
-     * Function for defining list of fields in table view.
-     *
-     * @return ListTable
-     */
-    public function listTable(): ListTable
-    {
-        // listing view fields
-        $fields = new ListTable();
-
-        $fields->name('title')->type('text')->ordering(true);
-        $fields->name('tenancy_id')->type('recordpicker')->table(['realestate', 'tenancy'])->ordering(true);
-        $fields->name('amount')->type('text')->ordering(true);
-        $fields->name('billing_date')->type('date')->ordering(true);
-
-        return $fields;
-
-    }
-
-    /**
-     * Function for defining list of fields in form view.
-     *
-     * @return FormBuilder
-     */
-    public function formBuilder(): FormBuilder
-    {
-        // listing view fields
-        $fields = new FormBuilder();
-
-        $fields->name('title')->type('text')->group('w-1/2');
-        $fields->name('tenancy_id')->type('recordpicker')->table(['realestate', 'tenancy'])->group('w-1/2');
-        $fields->name('amount')->type('text')->group('w-1/2');
-        $fields->name('billing_date')->type('date')->group('w-1/2');
-
-        return $fields;
-
-    }
-
-    /**
-     * Function for defining list of fields in filter view.
-     *
-     * @return FormBuilder
-     */
-    public function filter(): FormBuilder
-    {
-        // listing view fields
-        $fields = new FormBuilder();
-
-        $fields->name('title')->type('text')->group('w-1/6');
-        $fields->name('tenancy_id')->type('recordpicker')->table(['realestate', 'tenancy'])->group('w-1/6');
-        $fields->name('amount')->type('text')->group('w-1/6');
-        $fields->name('billing_date')->type('date')->group('w-1/6');
-
-        return $fields;
-
-    }
-
-    /**
      * List of fields to be migrated to the datebase when creating or updating model during migration.
      *
      * @param Blueprint $table
      * @return void
      */
-    public function migration(Blueprint $table): void
+    public function fields(Blueprint $table): void
     {
 
-        $table->increments('id');
-        $table->string('title');
-        $table->foreignId('tenancy_id')->nullable();
-        $table->double('amount', 8, 2)->nullable();
-        $table->dateTime('billing_date')->nullable();
+        $this->fields->increments('id')->html('text');
+        $this->fields->string('title')->html('text');
+        $this->fields->foreignId('tenancy_id')->nullable()->html('recordpicker')->table(['realestate', 'tenancy']);
+        $this->fields->double('amount', 8, 2)->nullable()->html('number');
+        $this->fields->dateTime('billing_date')->nullable()->html('date');
     }
 
-    /**
-     * Handle post migration processes for adding foreign keys.
-     *
-     * @param Blueprint $table
-     *
-     * @return void
-     */
-    public function post_migration(Blueprint $table): void
-    {
-        Migration::addForeign($table, 'realestate_tenancy', 'tenancy_id');
-    }
 }
