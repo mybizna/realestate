@@ -4,8 +4,6 @@ namespace Modules\Realestate\Entities;
 
 use Illuminate\Database\Schema\Blueprint;
 use Modules\Base\Classes\Migration;
-use Modules\Base\Classes\Views\FormBuilder;
-use Modules\Base\Classes\Views\ListTable;
 use Modules\Base\Entities\BaseModel;
 
 class ReadingGas extends BaseModel
@@ -39,95 +37,20 @@ class ReadingGas extends BaseModel
     protected $table = "realestate_reading_gas";
 
     /**
-     * Function for defining list of fields in table view.
-     *
-     * @return ListTable
-     */
-    public function listTable(): ListTable
-    {
-        // listing view fields
-        $fields = new ListTable();
-
-        $fields->name('name')->html('text')->ordering(true);
-        $fields->name('tenancy_id')->html('recordpicker')->table(['realestate', 'tenancy'])->ordering(true);
-        $fields->name('invoice_id')->html('recordpicker')->table(['account', 'invoice'])->ordering(true);
-        $fields->name('reading')->html('text')->ordering(true);
-        $fields->name('units')->html('text')->ordering(true);
-        $fields->name('billing_period')->html('text')->ordering(true);
-        $fields->name('billing_date')->html('date')->ordering(true);
-
-        return $fields;
-
-    }
-
-    /**
-     * Function for defining list of fields in form view.
-     *
-     * @return FormBuilder
-     */
-    public function formBuilder(): FormBuilder
-    {
-        // listing view fields
-        $fields = new FormBuilder();
-
-        $fields->name('name')->html('text')->group('w-1/2');
-        $fields->name('tenancy_id')->html('recordpicker')->table(['realestate', 'tenancy'])->group('w-1/2');
-        $fields->name('invoice_id')->html('recordpicker')->table(['account', 'invoice'])->group('w-1/2');
-        $fields->name('reading')->html('text')->group('w-1/2');
-        $fields->name('units')->html('text')->group('w-1/2');
-        $fields->name('billing_period')->html('text')->group('w-1/2');
-        $fields->name('billing_date')->html('date')->group('w-1/2');
-
-        return $fields;
-
-    }
-
-    /**
-     * Function for defining list of fields in filter view.
-     *
-     * @return FormBuilder
-     */
-    public function filter(): FormBuilder
-    {
-        // listing view fields
-        $fields = new FormBuilder();
-
-        $fields->name('name')->html('text')->group('w-1/6');
-        $fields->name('tenancy_id')->html('recordpicker')->table(['realestate', 'tenancy'])->group('w-1/6');
-        $fields->name('invoice_id')->html('recordpicker')->table(['account', 'invoice'])->group('w-1/6');
-        $fields->name('billing_period')->html('text')->group('w-1/6');
-        $fields->name('billing_date')->html('date')->group('w-1/6');
-
-        return $fields;
-
-    }
-    /**
      * List of fields to be migrated to the datebase when creating or updating model during migration.
      *
      * @param Blueprint $table
      * @return void
      */
-    public function migration(Blueprint $table): void
+    public function fields(Blueprint $table): void
     {
-        $this->fields->increments('id');
-        $this->fields->foreignId('tenancy_id')->nullable();
-        $this->fields->foreignId('invoice_id')->nullable();
-        $this->fields->integer('reading');
-        $this->fields->integer('units');
-        $this->fields->char('billing_period', 20)->nullable();
-        $this->fields->dateTime('billing_date')->nullable();
+        $this->fields->increments('id')->html('text');
+        $this->fields->foreignId('tenancy_id')->nullable()->html('recordpicker')->table(['realestate', 'tenancy']);
+        $this->fields->foreignId('invoice_id')->nullable()->html('recordpicker')->table(['account', 'invoice']);
+        $this->fields->integer('reading')->html('text');
+        $this->fields->integer('units')->html('text');
+        $this->fields->char('billing_period', 20)->nullable()->html('text');
+        $this->fields->dateTime('billing_date')->nullable()->html('date');
     }
 
-    /**
-     * Handle post migration processes for adding foreign keys.
-     *
-     * @param Blueprint $table
-     *
-     * @return void
-     */
-    public function post_migration(Blueprint $table): void
-    {
-        Migration::addForeign($table, 'realestate_tenancy', 'tenancy_id');
-        Migration::addForeign($table, 'account_invoice', 'invoice_id');
-    }
 }
