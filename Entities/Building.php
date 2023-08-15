@@ -42,10 +42,10 @@ class Building extends BaseModel
      * @param Blueprint $table
      * @return void
      */
-    public function fields(Blueprint $table): void
+    public function fields(Blueprint $table = null): void
     {
         $this->fields = $table ?? new Blueprint($this->table);
-        
+
         $this->fields->increments('id')->html('text');
         $this->fields->string('name')->html('text');
         $this->fields->foreignId('estate_id')->nullable()->html('recordpicker')->table(['realestate', 'estate']);
@@ -56,6 +56,19 @@ class Building extends BaseModel
         $this->fields->double('default_goodwill', 8, 2)->nullable()->html('amount');
         $this->fields->double('default_amount', 8, 2)->nullable()->html('amount');
         $this->fields->boolean('is_full')->default(0)->nullable()->html('switch');
+    }
+
+    /**
+     * List of structure for this model.
+     */
+    public function structure($structure): array
+    {
+        $structure = [
+            'table' => ['name', 'estate_id', 'type', 'units', 'default_deposit', 'default_goodwill', 'default_amount', 'is_full'],
+            'filter' => ['name', 'estate_id', 'type', 'units'],
+        ];
+
+        return $structure;
     }
 
 }

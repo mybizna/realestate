@@ -42,10 +42,10 @@ class Unit extends BaseModel
      * @param Blueprint $table
      * @return void
      */
-    public function fields(Blueprint $table): void
+    public function fields(Blueprint $table = null): void
     {
         $this->fields = $table ?? new Blueprint($this->table);
-        
+
         $this->fields->increments('id')->html('text');
         $this->fields->string('title')->html('text');
         $this->fields->string('description')->nullable()->html('textarea');
@@ -57,6 +57,19 @@ class Unit extends BaseModel
         $this->fields->string('rooms')->html('number');
         $this->fields->string('bathrooms')->html('number');
         $this->fields->boolean('is_full')->default(0)->nullable()->html('switch');
+    }
+
+    /**
+     * List of structure for this model.
+     */
+    public function structure($structure): array
+    {
+        $structure = [
+            'table' => ['title', 'building_id', 'type', 'amount', 'deposit', 'goodwill', 'rooms', 'bathrooms', 'is_full'],
+            'filter' => ['title', 'building_id', 'type'],
+        ];
+
+        return $structure;
     }
 
 }

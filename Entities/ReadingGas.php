@@ -42,10 +42,10 @@ class ReadingGas extends BaseModel
      * @param Blueprint $table
      * @return void
      */
-    public function fields(Blueprint $table): void
+    public function fields(Blueprint $table = null): void
     {
         $this->fields = $table ?? new Blueprint($this->table);
-        
+
         $this->fields->increments('id')->html('text');
         $this->fields->foreignId('tenancy_id')->nullable()->html('recordpicker')->table(['realestate', 'tenancy']);
         $this->fields->foreignId('invoice_id')->nullable()->html('recordpicker')->table(['account', 'invoice']);
@@ -53,6 +53,19 @@ class ReadingGas extends BaseModel
         $this->fields->integer('units')->html('text');
         $this->fields->char('billing_period', 20)->nullable()->html('text');
         $this->fields->dateTime('billing_date')->nullable()->html('date');
+    }
+
+    /**
+     * List of structure for this model.
+     */
+    public function structure($structure): array
+    {
+        $structure = [
+            'table' => ['name', 'tenancy_id', 'invoice_id', 'reading', 'units', 'billing_period', 'billing_date'],
+            'filter' => ['name', 'tenancy_id', 'invoice_id'],
+        ];
+
+        return $structure;
     }
 
 }

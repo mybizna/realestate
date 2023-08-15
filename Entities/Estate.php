@@ -45,7 +45,7 @@ class Estate extends BaseModel
      * @param Blueprint $table
      * @return void
      */
-    public function fields(Blueprint $table): void
+    public function fields(Blueprint $table = null): void
     {
         $this->fields = $table ?? new Blueprint($this->table);
         
@@ -53,6 +53,19 @@ class Estate extends BaseModel
         $this->fields->string('name')->html('text');
         $this->fields->string('description')->nullable()->html('textarea');
         $this->fields->foreignId('town_id')->nullable()->html('recordpicker')->table(['realestate', 'town']);
+    }
+
+    /**
+     * List of structure for this model.
+     */
+    public function structure($structure): array
+    {
+        $structure = [
+            'table' => ['name', 'town_id'],
+            'filter' => ['name', 'town_id'],
+        ];
+
+        return $structure;
     }
  
 }

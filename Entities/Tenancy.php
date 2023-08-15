@@ -42,7 +42,7 @@ class Tenancy extends BaseModel
      * @param Blueprint $table
      * @return void
      */
-    public function fields(Blueprint $table): void
+    public function fields(Blueprint $table = null): void
     {
         $this->fields = $table ?? new Blueprint($this->table);
 
@@ -63,6 +63,19 @@ class Tenancy extends BaseModel
         $this->fields->boolean('bill_gas')->default(0)->nullable()->html('switch');
         $this->fields->boolean('bill_water')->default(0)->nullable()->html('switch');
         $this->fields->boolean('bill_electricity')->default(0)->nullable()->html('switch');
+    }
+
+    /**
+     * List of structure for this model.
+     */
+    public function structure($structure): array
+    {
+        $structure = [
+            'table' => ['title', 'unit_id', 'partner_id', 'type', 'amount', 'deposit', 'goodwill', 'rooms', 'bill_gas', 'bill_water', 'bill_electricity'],
+            'filter' => ['unit_id', 'partner_id'],
+        ];
+
+        return $structure;
     }
 
 }

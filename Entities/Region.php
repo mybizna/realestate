@@ -42,15 +42,28 @@ class Region extends BaseModel
      * @param Blueprint $table
      * @return void
      */
-    public function fields(Blueprint $table): void
+    public function fields(Blueprint $table = null): void
     {
         $this->fields = $table ?? new Blueprint($this->table);
-        
+
         $this->fields->increments('id')->html('text');
         $this->fields->string('name')->html('text');
         $this->fields->string('description')->nullable();
         $this->fields->foreignId('country_id')->nullable()->html('recordpicker')->table(['core', 'country']);
         $this->fields->foreignId('state_id')->nullable()->html('recordpicker')->table(['core', 'state']);
+    }
+
+    /**
+     * List of structure for this model.
+     */
+    public function structure($structure): array
+    {
+        $structure = [
+            'table' => ['name', 'country_id', 'state_id'],
+            'filter' => ['name', 'country_id', 'state_id'],
+        ];
+
+        return $structure;
     }
 
 }
