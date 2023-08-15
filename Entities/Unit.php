@@ -46,11 +46,13 @@ class Unit extends BaseModel
     {
         $this->fields = $table ?? new Blueprint($this->table);
 
+        $type = ['single', 'bedsitter', 'one_bedroom', 'two_bedroom', 'three_bedroom', 'four_bedroom'];
+
         $this->fields->increments('id')->html('text');
         $this->fields->string('title')->html('text');
         $this->fields->string('description')->nullable()->html('textarea');
-        $this->fields->foreignId('building_id')->nullable()->html('recordpicker')->table(['realestate', 'building']);
-        $this->fields->enum('type', ['single', 'bedsitter', 'one_bedroom', 'two_bedroom', 'three_bedroom', 'four_bedroom'])->default('one_bedroom')->html('select');
+        $this->fields->foreignId('building_id')->nullable()->html('recordpicker')->relation(['realestate', 'building']);
+        $this->fields->enum('type', $type)->options($type)->default('one_bedroom')->html('select');
         $this->fields->double('amount', 8, 2)->nullable()->html('amount');
         $this->fields->double('deposit', 8, 2)->nullable()->html('amount');
         $this->fields->double('goodwill', 8, 2)->nullable()->html('amount');

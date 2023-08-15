@@ -52,7 +52,7 @@ class Estate extends BaseModel
         $this->fields->increments('id')->html('text');
         $this->fields->string('name')->html('text');
         $this->fields->string('description')->nullable()->html('textarea');
-        $this->fields->foreignId('town_id')->nullable()->html('recordpicker')->table(['realestate', 'town']);
+        $this->fields->foreignId('town_id')->nullable()->html('recordpicker')->relation(['realestate', 'town']);
     }
 
     /**

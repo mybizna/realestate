@@ -47,8 +47,8 @@ class ReadingWater extends BaseModel
         $this->fields = $table ?? new Blueprint($this->table);
         
         $this->fields->increments('id')->html('text');
-        $this->fields->foreignId('tenancy_id')->nullable()->html('recordpicker')->table(['realestate', 'tenancy']);
-        $this->fields->foreignId('invoice_id')->nullable()->html('recordpicker')->table(['account', 'invoice']);
+        $this->fields->foreignId('tenancy_id')->nullable()->html('recordpicker')->relation(['realestate', 'tenancy']);
+        $this->fields->foreignId('invoice_id')->nullable()->html('recordpicker')->relation(['account', 'invoice']);
         $this->fields->integer('reading')->html('text');
         $this->fields->integer('units')->html('text');
         $this->fields->char('billing_period', 20)->nullable()->html('number');

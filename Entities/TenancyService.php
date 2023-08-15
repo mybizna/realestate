@@ -48,7 +48,7 @@ class TenancyService extends BaseModel
 
         $this->fields->increments('id')->html('text');
         $this->fields->string('title')->html('text');
-        $this->fields->foreignId('tenancy_id')->nullable()->html('recordpicker')->table(['realestate', 'tenancy']);
+        $this->fields->foreignId('tenancy_id')->nullable()->html('recordpicker')->relation(['realestate', 'tenancy']);
         $this->fields->double('amount', 8, 2)->nullable()->html('number');
         $this->fields->dateTime('billing_date')->nullable()->html('date');
     }

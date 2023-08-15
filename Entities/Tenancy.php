@@ -46,12 +46,14 @@ class Tenancy extends BaseModel
     {
         $this->fields = $table ?? new Blueprint($this->table);
 
+        $type = ['weekly', 'bi_weekly', 'monthly', 'quarterly', 'bi_annually', 'annually'];
+
         $this->fields->increments('id')->html('text');
         $this->fields->string('title')->html('text');
         $this->fields->string('description')->nullable()->html('textarea');
-        $this->fields->foreignId('unit_id')->nullable()->html('recordpicker')->table(['realestate', 'unit']);
-        $this->fields->foreignId('partner_id')->nullable()->html('recordpicker')->table(['partner']);
-        $this->fields->enum('type', ['weekly', 'bi_weekly', 'monthly', 'quarterly', 'bi_annually', 'annually'])->default('monthly')->html('select');
+        $this->fields->foreignId('unit_id')->nullable()->html('recordpicker')->relation(['realestate', 'unit']);
+        $this->fields->foreignId('partner_id')->nullable()->html('recordpicker')->relation(['partner']);
+        $this->fields->enum('type', $type)->options($type)->default('monthly')->html('select');
         $this->fields->double('amount', 8, 2)->nullable()->html('amount');
         $this->fields->double('deposit', 8, 2)->nullable()->html('amount');
         $this->fields->double('goodwill', 8, 2)->nullable()->html('amount');

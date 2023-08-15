@@ -49,8 +49,8 @@ class Region extends BaseModel
         $this->fields->increments('id')->html('text');
         $this->fields->string('name')->html('text');
         $this->fields->string('description')->nullable();
-        $this->fields->foreignId('country_id')->nullable()->html('recordpicker')->table(['core', 'country']);
-        $this->fields->foreignId('state_id')->nullable()->html('recordpicker')->table(['core', 'state']);
+        $this->fields->foreignId('country_id')->nullable()->html('recordpicker')->relation(['core', 'country']);
+        $this->fields->foreignId('state_id')->nullable()->html('recordpicker')->relation(['core', 'state']);
     }
 
     /**

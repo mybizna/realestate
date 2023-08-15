@@ -48,7 +48,7 @@ class UnitSetup extends BaseModel
         
         $this->fields->increments('id')->html('text');
         $this->fields->string('title')->html('text');
-        $this->fields->foreignId('unit_id')->nullable()->html('recordpicker')->table(['realestate', 'unit']);
+        $this->fields->foreignId('unit_id')->nullable()->html('recordpicker')->relation(['realestate', 'unit']);
         $this->fields->double('amount', 8, 2)->nullable()->html('number');
     }
 

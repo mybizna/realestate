@@ -48,7 +48,7 @@ class Town extends BaseModel
         
         $this->fields->increments('id')->html('text');
         $this->fields->string('name')->html('text');
-        $this->fields->foreignId('region_id')->nullable()->html('recordpicker')->table(['realestate', 'region']);
+        $this->fields->foreignId('region_id')->nullable()->html('recordpicker')->relation(['realestate', 'region']);
         $this->fields->string('description')->nullable()->html('textarea');
     }
 

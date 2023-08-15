@@ -46,10 +46,12 @@ class Building extends BaseModel
     {
         $this->fields = $table ?? new Blueprint($this->table);
 
+        $type = ['apartment', 'maisonette', 'bungalow'];
+
         $this->fields->increments('id')->html('text');
         $this->fields->string('name')->html('text');
-        $this->fields->foreignId('estate_id')->nullable()->html('recordpicker')->table(['realestate', 'estate']);
-        $this->fields->enum('type', ['apartment', 'maisonette', 'bungalow'])->default('apartment')->nullable()->html('select');
+        $this->fields->foreignId('estate_id')->nullable()->html('recordpicker')->relation(['realestate', 'estate']);
+        $this->fields->enum('type', $type)->options($type)->default('apartment')->nullable()->html('select');
         $this->fields->string('description')->nullable()->html('textarea');
         $this->fields->integer('units')->nullable()->html('number');
         $this->fields->double('default_deposit', 8, 2)->nullable()->html('amount');
