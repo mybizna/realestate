@@ -62,6 +62,12 @@ class ReadingWater extends BaseModel
     {
         $structure = [
             'table' => ['name', 'tenancy_id', 'invoice_id', 'reading', 'units', 'billing_period', 'billing_date'],
+            'form' => [
+                ['label' => 'Name', 'class' => 'w-full', 'fields' => ['name']],
+                ['label' => 'Reading', 'class' => 'w-1/2', 'fields' => ['reading', 'units']],
+                ['label' => 'Setting', 'class' => 'w-1/2', 'fields' => ['tenancy_id', 'invoice_id']],
+                ['label' => 'Date', 'class' => 'w-1/2', 'fields' => ['billing_period', 'billing_date']],
+            ],
             'filter' => ['name', 'tenancy_id', 'invoice_id', ],
         ];
 

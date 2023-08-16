@@ -4,8 +4,6 @@ namespace Modules\Realestate\Entities;
 
 use Illuminate\Database\Schema\Blueprint;
 use Modules\Base\Classes\Migration;
-use Modules\Base\Classes\Views\FormBuilder;
-use Modules\Base\Classes\Views\ListTable;
 use Modules\Base\Entities\BaseModel;
 
 class Estate extends BaseModel
@@ -38,7 +36,6 @@ class Estate extends BaseModel
      */
     protected $table = "realestate_estate";
 
-   
     /**
      * List of fields to be migrated to the datebase when creating or updating model during migration.
      *
@@ -48,7 +45,7 @@ class Estate extends BaseModel
     public function fields(Blueprint $table = null): void
     {
         $this->fields = $table ?? new Blueprint($this->table);
-        
+
         $this->fields->increments('id')->html('text');
         $this->fields->string('name')->html('text');
         $this->fields->string('description')->nullable()->html('textarea');
@@ -60,12 +57,18 @@ class Estate extends BaseModel
      */
     public function structure($structure): array
     {
+
         $structure = [
             'table' => ['name', 'town_id'],
+            'form' => [
+                ['label' => 'Name', 'class' => 'w-full', 'fields' => ['name']],
+                ['label' => 'Town', 'class' => 'w-1/2', 'fields' => ['town_id']],
+                ['label' => 'Description', 'class' => 'w-full', 'fields' => ['description']],
+            ],
             'filter' => ['name', 'town_id'],
         ];
 
         return $structure;
     }
- 
+
 }

@@ -72,8 +72,15 @@ class Tenancy extends BaseModel
      */
     public function structure($structure): array
     {
+
         $structure = [
             'table' => ['title', 'unit_id', 'partner_id', 'type', 'amount', 'deposit', 'goodwill', 'rooms', 'bill_gas', 'bill_water', 'bill_electricity'],
+            'form' => [
+                ['label' => 'Title', 'class' => 'w-full', 'fields' => ['title']],
+                ['label' => 'Tenancy', 'class' => 'w-1/2', 'fields' => ['unit_id', 'partner_id', 'type', 'amount', 'deposit', 'goodwill']],
+                ['label' => 'Setting', 'class' => 'w-1/2', 'fields' => ['rooms', 'bill_gas', 'bill_water', 'bill_electricity']],
+                ['label' => 'Description', 'class' => 'w-full', 'fields' => ['description']],
+            ],
             'filter' => ['unit_id', 'partner_id'],
         ];
 

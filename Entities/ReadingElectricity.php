@@ -46,7 +46,7 @@ class ReadingElectricity extends BaseModel
     public function fields(Blueprint $table = null): void
     {
         $this->fields = $table ?? new Blueprint($this->table);
-        
+
         $this->fields->increments('id')->html('text');
         $this->fields->integer('reading')->html('text');
         $this->fields->foreignId('tenancy_id')->nullable()->html('recordpicker')->relation(['realestate', 'tenancy']);
@@ -61,9 +61,16 @@ class ReadingElectricity extends BaseModel
      */
     public function structure($structure): array
     {
+
         $structure = [
             'table' => ['name', 'tenancy_id', 'invoice_id', 'reading', 'units', 'billing_period', 'billing_date'],
-            'filter' => ['name', 'tenancy_id', 'invoice_id',],
+            'form' => [
+                ['label' => 'Name', 'class' => 'w-full', 'fields' => ['name']],
+                ['label' => 'Reading', 'class' => 'w-1/2', 'fields' => ['reading', 'units']],
+                ['label' => 'Setting', 'class' => 'w-1/2', 'fields' => ['tenancy_id', 'invoice_id']],
+                ['label' => 'Date', 'class' => 'w-1/2', 'fields' => ['billing_period', 'billing_date']],
+            ],
+            'filter' => ['name', 'tenancy_id', 'invoice_id'],
         ];
 
         return $structure;

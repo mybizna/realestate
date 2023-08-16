@@ -68,6 +68,12 @@ class Unit extends BaseModel
     {
         $structure = [
             'table' => ['title', 'building_id', 'type', 'amount', 'deposit', 'goodwill', 'rooms', 'bathrooms', 'is_full'],
+            'form' => [
+                ['label' => 'Title', 'class' => 'w-full', 'fields' => ['title']],
+                ['label' => 'Unit', 'class' => 'w-1/2', 'fields' => ['building_id', 'type', 'rooms', 'bathrooms', 'is_full']],
+                ['label' => 'Setting', 'class' => 'w-1/2', 'fields' => ['amount', 'deposit', 'goodwill']],
+                ['label' => 'Description', 'class' => 'w-full', 'fields' => ['description']],
+            ],
             'filter' => ['title', 'building_id', 'type'],
         ];
 

@@ -67,6 +67,12 @@ class Building extends BaseModel
     {
         $structure = [
             'table' => ['name', 'estate_id', 'type', 'units', 'default_deposit', 'default_goodwill', 'default_amount', 'is_full'],
+            'form' => [
+                ['label' => 'Name', 'class' => 'w-full', 'fields' => ['name']],
+                ['label' => 'Setting', 'class' => 'w-1/2', 'fields' => ['estate_id', 'type', 'units', 'is_full']],
+                ['label' => 'Others', 'class' => 'w-1/2', 'fields' => ['default_deposit', 'default_goodwill', 'default_amount']],
+                ['label' => 'Description', 'class' => 'w-full', 'fields' => ['description']],
+            ],
             'filter' => ['name', 'estate_id', 'type', 'units'],
         ];
 
