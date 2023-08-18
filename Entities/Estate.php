@@ -58,15 +58,13 @@ class Estate extends BaseModel
     public function structure($structure): array
     {
 
-        $structure = [
-            'table' => ['name', 'town_id'],
-            'form' => [
-                ['label' => 'Name', 'class' => 'w-full', 'fields' => ['name']],
-                ['label' => 'Town', 'class' => 'w-1/2', 'fields' => ['town_id']],
-                ['label' => 'Description', 'class' => 'w-full', 'fields' => ['description']],
-            ],
-            'filter' => ['name', 'town_id'],
+        $structure['table'] = ['name', 'town_id'];
+        $structure['form'] = [
+            ['label' => 'Name', 'class' => 'col-span-full', 'fields' => ['name']],
+            ['label' => 'Town', 'class' => 'col-span-6', 'fields' => ['town_id']],
+            ['label' => 'Description', 'class' => 'col-span-full', 'fields' => ['description']],
         ];
+        $structure['filter'] = ['name', 'town_id'];
 
         return $structure;
     }

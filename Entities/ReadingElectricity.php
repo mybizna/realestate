@@ -62,16 +62,14 @@ class ReadingElectricity extends BaseModel
     public function structure($structure): array
     {
 
-        $structure = [
-            'table' => ['name', 'tenancy_id', 'invoice_id', 'reading', 'units', 'billing_period', 'billing_date'],
-            'form' => [
-                ['label' => 'Name', 'class' => 'w-full', 'fields' => ['name']],
-                ['label' => 'Reading', 'class' => 'w-1/2', 'fields' => ['reading', 'units']],
-                ['label' => 'Setting', 'class' => 'w-1/2', 'fields' => ['tenancy_id', 'invoice_id']],
-                ['label' => 'Date', 'class' => 'w-1/2', 'fields' => ['billing_period', 'billing_date']],
-            ],
-            'filter' => ['name', 'tenancy_id', 'invoice_id'],
+        $structure['table'] = ['name', 'tenancy_id', 'invoice_id', 'reading', 'units', 'billing_period', 'billing_date'];
+        $structure['form'] = [
+            ['label' => 'Name', 'class' => 'col-span-full', 'fields' => ['name']],
+            ['label' => 'Reading', 'class' => 'col-span-6', 'fields' => ['reading', 'units']],
+            ['label' => 'Setting', 'class' => 'col-span-6', 'fields' => ['tenancy_id', 'invoice_id']],
+            ['label' => 'Date', 'class' => 'col-span-6', 'fields' => ['billing_period', 'billing_date']],
         ];
+        $structure['filter'] = ['name', 'tenancy_id', 'invoice_id'];
 
         return $structure;
     }

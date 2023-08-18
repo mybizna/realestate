@@ -65,16 +65,14 @@ class Building extends BaseModel
      */
     public function structure($structure): array
     {
-        $structure = [
-            'table' => ['name', 'estate_id', 'type', 'units', 'default_deposit', 'default_goodwill', 'default_amount', 'is_full'],
-            'form' => [
-                ['label' => 'Name', 'class' => 'w-full', 'fields' => ['name']],
-                ['label' => 'Setting', 'class' => 'w-1/2', 'fields' => ['estate_id', 'type', 'units', 'is_full']],
-                ['label' => 'Others', 'class' => 'w-1/2', 'fields' => ['default_deposit', 'default_goodwill', 'default_amount']],
-                ['label' => 'Description', 'class' => 'w-full', 'fields' => ['description']],
-            ],
-            'filter' => ['name', 'estate_id', 'type', 'units'],
+        $structure['table'] = ['name', 'estate_id', 'type', 'units', 'default_deposit', 'default_goodwill', 'default_amount', 'is_full'];
+        $structure['form'] = [
+            ['label' => 'Name', 'class' => 'col-span-full', 'fields' => ['name']],
+            ['label' => 'Setting', 'class' => 'col-span-6', 'fields' => ['estate_id', 'type', 'units', 'is_full']],
+            ['label' => 'Others', 'class' => 'col-span-6', 'fields' => ['default_deposit', 'default_goodwill', 'default_amount']],
+            ['label' => 'Description', 'class' => 'col-span-full', 'fields' => ['description']],
         ];
+        $structure['filter'] = ['name', 'estate_id', 'type', 'units'];
 
         return $structure;
     }

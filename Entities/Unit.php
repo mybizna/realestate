@@ -66,16 +66,14 @@ class Unit extends BaseModel
      */
     public function structure($structure): array
     {
-        $structure = [
-            'table' => ['title', 'building_id', 'type', 'amount', 'deposit', 'goodwill', 'rooms', 'bathrooms', 'is_full'],
-            'form' => [
-                ['label' => 'Title', 'class' => 'w-full', 'fields' => ['title']],
-                ['label' => 'Unit', 'class' => 'w-1/2', 'fields' => ['building_id', 'type', 'rooms', 'bathrooms', 'is_full']],
-                ['label' => 'Setting', 'class' => 'w-1/2', 'fields' => ['amount', 'deposit', 'goodwill']],
-                ['label' => 'Description', 'class' => 'w-full', 'fields' => ['description']],
-            ],
-            'filter' => ['title', 'building_id', 'type'],
+        $structure['table'] = ['title', 'building_id', 'type', 'amount', 'deposit', 'goodwill', 'rooms', 'bathrooms', 'is_full'];
+        $structure['form'] = [
+            ['label' => 'Title', 'class' => 'col-span-full', 'fields' => ['title']],
+            ['label' => 'Unit', 'class' => 'col-span-6', 'fields' => ['building_id', 'type', 'rooms', 'bathrooms', 'is_full']],
+            ['label' => 'Setting', 'class' => 'col-span-6', 'fields' => ['amount', 'deposit', 'goodwill']],
+            ['label' => 'Description', 'class' => 'col-span-full', 'fields' => ['description']],
         ];
+        $structure['filter'] = ['title', 'building_id', 'type'];
 
         return $structure;
     }
