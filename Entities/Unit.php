@@ -48,7 +48,7 @@ class Unit extends BaseModel
 
         $type = ['single', 'bedsitter', 'one_bedroom', 'two_bedroom', 'three_bedroom', 'four_bedroom'];
 
-        $this->fields->increments('id')->html('text');
+        $this->fields->increments('id')->html('hidden');
         $this->fields->string('title')->html('text');
         $this->fields->string('description')->nullable()->html('textarea');
         $this->fields->foreignId('building_id')->nullable()->html('recordpicker')->relation(['realestate', 'building']);

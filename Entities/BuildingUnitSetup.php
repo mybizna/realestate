@@ -46,7 +46,7 @@ class BuildingUnitSetup extends BaseModel
     {
         $this->fields = $table ?? new Blueprint($this->table);
         
-        $this->fields->increments('id')->html('text');
+        $this->fields->increments('id')->html('hidden');
         $this->fields->string('title')->html('text');
         $this->fields->double('amount', 8, 2)->nullable()->html('number');
         $this->fields->foreignId('building_id')->nullable()->html('recordpicker')->relation(['realestate', 'building']);

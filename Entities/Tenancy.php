@@ -48,7 +48,7 @@ class Tenancy extends BaseModel
 
         $type = ['weekly', 'bi_weekly', 'monthly', 'quarterly', 'bi_annually', 'annually'];
 
-        $this->fields->increments('id')->html('text');
+        $this->fields->increments('id')->html('hidden');
         $this->fields->string('title')->html('text');
         $this->fields->string('description')->nullable()->html('textarea');
         $this->fields->foreignId('unit_id')->nullable()->html('recordpicker')->relation(['realestate', 'unit']);

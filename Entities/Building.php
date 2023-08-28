@@ -48,7 +48,7 @@ class Building extends BaseModel
 
         $type = ['apartment', 'maisonette', 'bungalow'];
 
-        $this->fields->increments('id')->html('text');
+        $this->fields->increments('id')->html('hidden');
         $this->fields->string('name')->html('text');
         $this->fields->foreignId('estate_id')->nullable()->html('recordpicker')->relation(['realestate', 'estate']);
         $this->fields->enum('type', $type)->options($type)->default('apartment')->nullable()->html('select');

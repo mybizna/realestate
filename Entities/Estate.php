@@ -46,7 +46,7 @@ class Estate extends BaseModel
     {
         $this->fields = $table ?? new Blueprint($this->table);
 
-        $this->fields->increments('id')->html('text');
+        $this->fields->increments('id')->html('hidden');
         $this->fields->string('name')->html('text');
         $this->fields->string('description')->nullable()->html('textarea');
         $this->fields->foreignId('town_id')->nullable()->html('recordpicker')->relation(['realestate', 'town']);

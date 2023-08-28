@@ -46,7 +46,7 @@ class Region extends BaseModel
     {
         $this->fields = $table ?? new Blueprint($this->table);
 
-        $this->fields->increments('id')->html('text');
+        $this->fields->increments('id')->html('hidden');
         $this->fields->string('name')->html('text');
         $this->fields->string('description')->nullable();
         $this->fields->foreignId('country_id')->nullable()->html('recordpicker')->relation(['core', 'country']);
