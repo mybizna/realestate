@@ -13,7 +13,7 @@ class UnitSetup extends BaseModel
      *
      * @var array<string>
      */
-    protected $fillable = ['title', 'unit_id', 'amount'];
+    protected $fillable = ['title', 'slug', 'unit_id', 'amount'];
 
     /**
      * The fields that are to be render when performing relationship queries.
@@ -45,9 +45,10 @@ class UnitSetup extends BaseModel
     public function fields(Blueprint $table = null): void
     {
         $this->fields = $table ?? new Blueprint($this->table);
-        
+
         $this->fields->increments('id')->html('hidden');
         $this->fields->string('title')->html('text');
+        $this->fields->string('slug')->html('text');
         $this->fields->foreignId('unit_id')->nullable()->html('recordpicker')->relation(['realestate', 'unit']);
         $this->fields->double('amount', 8, 2)->nullable()->html('number');
     }

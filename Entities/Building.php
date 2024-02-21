@@ -13,7 +13,7 @@ class Building extends BaseModel
      *
      * @var array<string>
      */
-    protected $fillable = ['name', 'estate_id', 'type', 'description', 'units', 'default_deposit', 'default_goodwill', 'default_amount', 'is_full'];
+    protected $fillable = ['name', 'slug', 'estate_id', 'type', 'description', 'units', 'default_deposit', 'default_goodwill', 'default_amount', 'is_full'];
 
     /**
      * The fields that are to be render when performing relationship queries.
@@ -50,6 +50,7 @@ class Building extends BaseModel
 
         $this->fields->increments('id')->html('hidden');
         $this->fields->string('name')->html('text');
+        $this->fields->string('slug')->html('text');
         $this->fields->foreignId('estate_id')->nullable()->html('recordpicker')->relation(['realestate', 'estate']);
         $this->fields->enum('type', $type)->options($type)->default('apartment')->nullable()->html('select');
         $this->fields->string('description')->nullable()->html('textarea');

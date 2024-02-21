@@ -13,7 +13,7 @@ class Tenancy extends BaseModel
      *
      * @var array<string>
      */
-    protected $fillable = ['title', 'description', 'unit_id', 'partner_id', 'type', 'amount', 'deposit', 'goodwill', 'rooms', 'billing_date', 'is_merged_bill', 'is_started', 'is_closed', 'bill_gas', 'bill_water', 'bill_electricity'];
+    protected $fillable = ['title', 'slug', 'description', 'unit_id', 'partner_id', 'type', 'amount', 'deposit', 'goodwill', 'rooms', 'billing_date', 'is_merged_bill', 'is_started', 'is_closed', 'bill_gas', 'bill_water', 'bill_electricity'];
 
     /**
      * The fields that are to be render when performing relationship queries.
@@ -50,6 +50,7 @@ class Tenancy extends BaseModel
 
         $this->fields->increments('id')->html('hidden');
         $this->fields->string('title')->html('text');
+        $this->fields->string('slug')->html('text');
         $this->fields->string('description')->nullable()->html('textarea');
         $this->fields->foreignId('unit_id')->nullable()->html('recordpicker')->relation(['realestate', 'unit']);
         $this->fields->foreignId('partner_id')->nullable()->html('recordpicker')->relation(['partner']);

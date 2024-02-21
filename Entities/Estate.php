@@ -13,7 +13,7 @@ class Estate extends BaseModel
      *
      * @var array<string>
      */
-    protected $fillable = ['name', 'description', 'town_id'];
+    protected $fillable = ['name', 'slug', 'description', 'town_id'];
 
     /**
      * The fields that are to be render when performing relationship queries.
@@ -48,6 +48,7 @@ class Estate extends BaseModel
 
         $this->fields->increments('id')->html('hidden');
         $this->fields->string('name')->html('text');
+        $this->fields->string('slug')->html('text');
         $this->fields->string('description')->nullable()->html('textarea');
         $this->fields->foreignId('town_id')->nullable()->html('recordpicker')->relation(['realestate', 'town']);
     }

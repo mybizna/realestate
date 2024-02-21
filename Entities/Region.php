@@ -13,7 +13,7 @@ class Region extends BaseModel
      *
      * @var array<string>
      */
-    protected $fillable = ['name', 'description', 'country_id', 'state_id'];
+    protected $fillable = ['name', 'slug', 'description', 'country_id', 'state_id'];
 
     /**
      * The fields that are to be render when performing relationship queries.
@@ -48,6 +48,7 @@ class Region extends BaseModel
 
         $this->fields->increments('id')->html('hidden');
         $this->fields->string('name')->html('text');
+        $this->fields->string('slug')->html('text');
         $this->fields->string('description')->nullable();
         $this->fields->foreignId('country_id')->nullable()->html('recordpicker')->relation(['core', 'country']);
         $this->fields->foreignId('state_id')->nullable()->html('recordpicker')->relation(['core', 'state']);
