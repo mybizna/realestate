@@ -23,15 +23,51 @@ class Town
      */
     public function data(Datasetter $datasetter): void
     {
-        $region_id = DB::table('realestate_region')->where('slug', 'region_1')->value('id');
-
+        $region_id = DB::table('realestate_region')->where('slug', 'nairobi')->value('id');
         $datasetter->add_data('realestate', 'town', 'slug', [
-            "name" => "Town 1",
-            "slug" => "town_1",
+            "name" => "Nairbi",
+            "slug" => "nairobi",
             "region_id" => $region_id,
-            "description" => "Town 1",
+            "description" => "Nairobi",
         ]);
 
+        $region_id = DB::table('realestate_region')->where('slug', 'mombasa')->value('id');
+        $datasetter->add_data('realestate', 'town', 'slug', [
+            "name" => "Mombasa",
+            "slug" => "mombasa",
+            "region_id" => $region_id,
+            "description" => "Mombasa",
+        ]);
+
+        $region_id = DB::table('realestate_region')->where('slug', 'kisumu')->value('id');
+        $datasetter->add_data('realestate', 'town', 'slug', [
+            "name" => "Kisumu",
+            "slug" => "kisumu",
+            "region_id" => $region_id,
+            "description" => "Kisumu",
+        ]);
+
+        $region_id = DB::table('realestate_region')->where('slug', 'nakuru')->value('id');
+        $datasetter->add_data('realestate', 'town', 'slug', [
+            "name" => "Nakuru",
+            "slug" => "nakuru",
+            "region_id" => $region_id,
+            "description" => "Nakuru",
+        ]);
+        $datasetter->add_data('realestate', 'town', 'slug', [
+            "name" => "Naivasha",
+            "slug" => "naivasha",
+            "region_id" => $region_id,
+            "description" => "Naivasha",
+        ]);
+
+        $region_id = DB::table('realestate_region')->where('slug', 'eldoret')->value('id');
+        $datasetter->add_data('realestate', 'town', 'slug', [
+            "name" => "Eldoret",
+            "slug" => "eldoret",
+            "region_id" => $region_id,
+            "description" => "Eldoret",
+        ]);
 
     }
 }

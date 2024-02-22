@@ -28,9 +28,41 @@ class Region
       
 
         $datasetter->add_data('realestate', 'region', 'slug', [
-            "name" => "Region 1",
-            "slug" => "region_1",
-            "description" => "Region 1",
+            "name" => "Nairobi County",
+            "slug" => "nairobi",
+            "description" => "Nairobi County",
+            "country_id" => $country_id,
+            "state_id" => $state_id,
+        ]);
+
+        $datasetter->add_data('realestate', 'region', 'slug', [
+            "name" => "Mombasa County",
+            "slug" => "mombasa",
+            "description" => "Mombasa County",
+            "country_id" => $country_id,
+            "state_id" => $state_id,
+        ]);
+
+        $datasetter->add_data('realestate', 'region', 'slug', [
+            "name" => "Kisumu County",
+            "slug" => "kisumu",
+            "description" => "Kisumu County",
+            "country_id" => $country_id,
+            "state_id" => $state_id,
+        ]);
+
+        $datasetter->add_data('realestate', 'region', 'slug', [
+            "name" => "Nakuru County",
+            "slug" => "nakuru",
+            "description" => "Nakuru County",
+            "country_id" => $country_id,
+            "state_id" => $state_id,
+        ]); 
+
+        $datasetter->add_data('realestate', 'region', 'slug', [
+            "name" => "Eldoret County",
+            "slug" => "eldoret",
+            "description" => "Eldoret County",
             "country_id" => $country_id,
             "state_id" => $state_id,
         ]);

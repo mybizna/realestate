@@ -77,8 +77,8 @@ class Tenancy extends BaseModel
         $structure['table'] = ['title', 'unit_id', 'partner_id', 'type', 'amount', 'deposit', 'goodwill', 'rooms', 'bill_gas', 'bill_water', 'bill_electricity'];
         $structure['form'] = [
             ['label' => 'Title', 'class' => 'col-span-full', 'fields' => ['title']],
-            ['label' => 'Tenancy', 'class' => 'col-span-6', 'fields' => ['unit_id', 'partner_id', 'type', 'amount', 'deposit', 'goodwill']],
-            ['label' => 'Setting', 'class' => 'col-span-6', 'fields' => ['rooms', 'bill_gas', 'bill_water', 'bill_electricity']],
+            ['label' => 'Tenancy', 'class' => 'col-span-full md:col-span-6', 'fields' => ['unit_id', 'partner_id', 'type', 'amount', 'deposit', 'goodwill']],
+            ['label' => 'Setting', 'class' => 'col-span-full md:col-span-6', 'fields' => ['rooms', 'bill_gas', 'bill_water', 'bill_electricity']],
             ['label' => 'Description', 'class' => 'col-span-full', 'fields' => ['description']],
         ];
         $structure['filter'] = ['unit_id', 'partner_id'];

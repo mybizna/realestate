@@ -63,8 +63,8 @@ class Region extends BaseModel
         $structure['table'] = ['name', 'country_id', 'state_id'];
         $structure['form'] = [
             ['label' => 'Name', 'class' => 'col-span-full', 'fields' => ['name']],
-            ['label' => 'Region', 'class' => 'col-span-6', 'fields' => ['country_id', 'state_id']],
-            ['label' => 'Description', 'class' => 'col-span-6', 'fields' => ['description']],
+            ['label' => 'Region', 'class' => 'col-span-full md:col-span-6', 'fields' => ['country_id', 'state_id']],
+            ['label' => 'Description', 'class' => 'col-span-full md:col-span-6', 'fields' => ['description']],
         ];
         $structure['filter'] = ['name', 'country_id', 'state_id'];
 
