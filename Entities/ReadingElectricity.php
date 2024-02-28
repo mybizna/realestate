@@ -65,9 +65,9 @@ class ReadingElectricity extends BaseModel
         $structure['table'] = ['name', 'tenancy_id', 'invoice_id', 'reading', 'units', 'billing_period', 'billing_date'];
         $structure['form'] = [
             ['label' => 'Name', 'class' => 'col-span-full', 'fields' => ['name']],
-            ['label' => 'Reading', 'class' => 'col-span-full md:col-span-6', 'fields' => ['reading', 'units']],
-            ['label' => 'Setting', 'class' => 'col-span-full md:col-span-6', 'fields' => ['tenancy_id', 'invoice_id']],
-            ['label' => 'Date', 'class' => 'col-span-full md:col-span-6', 'fields' => ['billing_period', 'billing_date']],
+            ['label' => 'Reading', 'class' => 'col-span-full  md:col-span-6 md:pr-2', 'fields' => ['reading', 'units']],
+            ['label' => 'Setting', 'class' => 'col-span-full  md:col-span-6 md:pr-2', 'fields' => ['tenancy_id', 'invoice_id']],
+            ['label' => 'Date', 'class' => 'col-span-full  md:col-span-6 md:pr-2', 'fields' => ['billing_period', 'billing_date']],
         ];
         $structure['filter'] = ['name', 'tenancy_id', 'invoice_id'];
 
