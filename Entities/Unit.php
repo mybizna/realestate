@@ -69,10 +69,10 @@ class Unit extends BaseModel
     {
         $structure['table'] = ['title', 'building_id', 'type', 'amount', 'deposit', 'goodwill', 'rooms', 'bathrooms', 'is_full'];
         $structure['form'] = [
-            ['label' => 'Title', 'class' => 'col-span-full', 'fields' => ['title']],
-            ['label' => 'Unit', 'class' => 'col-span-full  md:col-span-6 md:pr-2', 'fields' => ['building_id', 'type', 'rooms', 'bathrooms', 'is_full']],
-            ['label' => 'Setting', 'class' => 'col-span-full  md:col-span-6 md:pr-2', 'fields' => ['amount', 'deposit', 'goodwill']],
-            ['label' => 'Description', 'class' => 'col-span-full', 'fields' => ['description']],
+            ['label' => 'Unit Title', 'class' => 'col-span-full', 'fields' => ['title']],
+            ['label' => 'Unit Detail', 'class' => 'col-span-full  md:col-span-6 md:pr-2', 'fields' => ['building_id', 'type', 'rooms', 'bathrooms', 'is_full']],
+            ['label' => 'Unit Setting', 'class' => 'col-span-full  md:col-span-6 md:pr-2', 'fields' => ['amount', 'deposit', 'goodwill']],
+            ['label' => 'Unit Description', 'class' => 'col-span-full', 'fields' => ['description']],
         ];
         $structure['filter'] = ['title', 'building_id', 'type'];
 

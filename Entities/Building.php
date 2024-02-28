@@ -68,10 +68,10 @@ class Building extends BaseModel
     {
         $structure['table'] = ['name', 'estate_id', 'type', 'units', 'default_deposit', 'default_goodwill', 'default_amount', 'is_full'];
         $structure['form'] = [
-            ['label' => 'Name', 'class' => 'col-span-full', 'fields' => ['name']],
-            ['label' => 'Setting', 'class' => 'col-span-full  md:col-span-6 md:pr-2', 'fields' => ['estate_id', 'type', 'units', 'is_full']],
-            ['label' => 'Others', 'class' => 'col-span-full md:col-span-6ull  md:col-span-6 md:pr-2', 'fields' => ['default_deposit', 'default_goodwill', 'default_amount']],
-            ['label' => 'Description', 'class' => 'col-span-full', 'fields' => ['description']],
+            ['label' => 'Building Name', 'class' => 'col-span-full', 'fields' => ['name']],
+            ['label' => 'Building Detail', 'class' => 'col-span-full  md:col-span-6 md:pr-2', 'fields' => ['estate_id', 'type', 'units', 'is_full']],
+            ['label' => 'Building Others Setting', 'class' => 'col-span-full md:col-span-6ull  md:col-span-6 md:pr-2', 'fields' => ['default_deposit', 'default_goodwill', 'default_amount']],
+            ['label' => 'Building Description', 'class' => 'col-span-full', 'fields' => ['description']],
         ];
         $structure['filter'] = ['name', 'estate_id', 'type', 'units'];
 

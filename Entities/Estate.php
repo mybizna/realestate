@@ -61,9 +61,9 @@ class Estate extends BaseModel
 
         $structure['table'] = ['name', 'town_id'];
         $structure['form'] = [
-            ['label' => 'Name', 'class' => 'col-span-full', 'fields' => ['name']],
-            ['label' => 'Town', 'class' => 'col-span-full  md:col-span-6 md:pr-2', 'fields' => ['town_id']],
-            ['label' => 'Description', 'class' => 'col-span-full', 'fields' => ['description']],
+            ['label' => 'Estate Name', 'class' => 'col-span-full', 'fields' => ['name']],
+            ['label' => 'Estate Town', 'class' => 'col-span-full  md:col-span-6 md:pr-2', 'fields' => ['town_id']],
+            ['label' => 'Estate Description', 'class' => 'col-span-full', 'fields' => ['description']],
         ];
         $structure['filter'] = ['name', 'town_id'];
 
