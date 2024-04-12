@@ -53,4 +53,13 @@ class Town extends BaseModel
         $this->fields->string('description')->nullable()->html('textarea');
     }
 
+    /**
+     * Define rights for this model.
+     *
+     * @return array
+     */
+    public function rights(): array
+    {
+
+    }
 }

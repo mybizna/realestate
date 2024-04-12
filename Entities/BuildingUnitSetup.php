@@ -53,4 +53,14 @@ class BuildingUnitSetup extends BaseModel
         $this->fields->foreignId('building_id')->nullable()->html('recordpicker')->relation(['realestate', 'building']);
     }
 
+    /**
+     * Define rights for this model.
+     *
+     * @return array
+     */
+    public function rights(): array
+    {
+
+    }
+
 }

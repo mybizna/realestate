@@ -53,4 +53,13 @@ class TenancyService extends BaseModel
         $this->fields->dateTime('billing_date')->nullable()->html('date');
     }
 
+    /**
+     * Define rights for this model.
+     *
+     * @return array
+     */
+    public function rights(): array
+    {
+
+    }
 }

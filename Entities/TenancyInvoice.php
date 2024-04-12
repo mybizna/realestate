@@ -52,4 +52,13 @@ class TenancyInvoice extends BaseModel
         $this->fields->char('billing_period', 20)->nullable()->html('number');
     }
 
+    /**
+     * Define rights for this model.
+     *
+     * @return array
+     */
+    public function rights(): array
+    {
+
+    }
 }

@@ -53,4 +53,14 @@ class UnitSetup extends BaseModel
         $this->fields->double('amount', 8, 2)->nullable()->html('number');
     }
 
+    /**
+     * Define rights for this model.
+     *
+     * @return array
+     */
+    public function rights(): array
+    {
+
+    }
+
 }
