@@ -16,20 +16,6 @@ class Tenancy extends BaseModel
     protected $fillable = ['title', 'slug', 'description', 'unit_id', 'partner_id', 'type', 'amount', 'deposit', 'goodwill', 'rooms', 'billing_date', 'is_merged_bill', 'is_started', 'is_closed', 'bill_gas', 'bill_water', 'bill_electricity'];
 
     /**
-     * The fields that are to be render when performing relationship queries.
-     *
-     * @var array<string>
-     */
-    public $rec_names = ['title'];
-
-    /**
-     * List of tables names that are need in this model during migration.
-     *
-     * @var array<string>
-     */
-    public array $migrationDependancy = ['realestate_unit', 'partner'];
-
-    /**
      * The table associated with the model.
      *
      * @var string
@@ -68,37 +54,7 @@ class Tenancy extends BaseModel
         $this->fields->boolean('bill_electricity')->default(0)->nullable()->html('switch');
     }
 
-    /**
-     * List of structure for this model.
-     */
-    public function structure($structure): array
-    {
 
-        $structure['table'] = ['title', 'unit_id', 'partner_id', 'type', 'amount', 'deposit', 'goodwill', 'rooms', 'bill_gas', 'bill_water', 'bill_electricity'];
-        $structure['form'] = [
-            ['label' => 'Tenancy Title', 'class' => 'col-span-full', 'fields' => ['title']],
-            ['label' => 'Tenancy Detail', 'class' => 'col-span-full  md:col-span-6 md:pr-2', 'fields' => ['unit_id', 'partner_id', 'type', 'amount', 'deposit', 'goodwill']],
-            ['label' => 'Tenancy Setting', 'class' => 'col-span-full  md:col-span-6 md:pr-2', 'fields' => ['rooms', 'bill_gas', 'bill_water', 'bill_electricity']],
-            ['label' => 'Tenancy Description', 'class' => 'col-span-full', 'fields' => ['description']],
-        ];
-        $structure['filter'] = ['unit_id', 'partner_id'];
 
-        return $structure;
-    }
 
-    /**
-     * Define rights for this model.
-     *
-     * @return array
-     */
-    public function rights(): array
-    {
-        $rights = parent::rights();
-
-        $rights['staff'] = ['view' => true];
-        $rights['registered'] = [];
-        $rights['guest'] = [];
-
-        return $rights;
-    }
 }

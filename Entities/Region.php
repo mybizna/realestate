@@ -16,20 +16,6 @@ class Region extends BaseModel
     protected $fillable = ['name', 'slug', 'description', 'country_id', 'state_id'];
 
     /**
-     * The fields that are to be render when performing relationship queries.
-     *
-     * @var array<string>
-     */
-    public $rec_names = ['name'];
-
-    /**
-     * List of tables names that are need in this model during migration.
-     *
-     * @var array<string>
-     */
-    public array $migrationDependancy = ['core_country', 'core_state'];
-
-    /**
      * The table associated with the model.
      *
      * @var string
@@ -54,38 +40,9 @@ class Region extends BaseModel
         $this->fields->foreignId('state_id')->nullable()->html('recordpicker')->relation(['core', 'state']);
     }
 
-    /**
-     * List of structure for this model.
-     */
-    public function structure($structure): array
-    {
-
-        $structure['table'] = ['name', 'country_id', 'state_id'];
-        $structure['form'] = [
-            ['label' => 'Region Name', 'class' => 'col-span-full', 'fields' => ['name']],
-            ['label' => 'Region Detail', 'class' => 'col-span-full  md:col-span-6 md:pr-2', 'fields' => ['country_id', 'state_id']],
-            ['label' => 'Region Description', 'class' => 'col-span-full  md:col-span-6 md:pr-2', 'fields' => ['description']],
-        ];
-        $structure['filter'] = ['name', 'country_id', 'state_id'];
-
-        return $structure;
-    }
+ 
 
 
-    /**
-     * Define rights for this model.
-     *
-     * @return array
-     */
-    public function rights(): array
-    {
-        $rights = parent::rights();
-
-        $rights['staff'] = ['view' => true];
-        $rights['registered'] = ['view' => true];
-        $rights['guest'] = [];
-
-        return $rights;
-    }
+ 
 
 }

@@ -16,20 +16,6 @@ class Town extends BaseModel
     protected $fillable = ['name', 'slug', 'region_id', 'description'];
 
     /**
-     * The fields that are to be render when performing relationship queries.
-     *
-     * @var array<string>
-     */
-    public $rec_names = ['name'];
-
-    /**
-     * List of tables names that are need in this model during migration.
-     *
-     * @var array<string>
-     */
-    public array $migrationDependancy = ['realestate_region'];
-
-    /**
      * The table associated with the model.
      *
      * @var string
@@ -53,19 +39,5 @@ class Town extends BaseModel
         $this->fields->string('description')->nullable()->html('textarea');
     }
 
-    /**
-     * Define rights for this model.
-     *
-     * @return array
-     */
-    public function rights(): array
-    {
-        $rights = parent::rights();
 
-        $rights['staff'] = ['view' => true];
-        $rights['registered'] = ['view' => true];
-        $rights['guest'] = [];
-
-        return $rights;
-    }
 }

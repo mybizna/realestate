@@ -16,20 +16,6 @@ class UnitSetup extends BaseModel
     protected $fillable = ['title', 'slug', 'unit_id', 'amount'];
 
     /**
-     * The fields that are to be render when performing relationship queries.
-     *
-     * @var array<string>
-     */
-    public $rec_names = ['title'];
-
-    /**
-     * List of tables names that are need in this model during migration.
-     *
-     * @var array<string>
-     */
-    public array $migrationDependancy = ['realestate_unit'];
-
-    /**
      * The table associated with the model.
      *
      * @var string
@@ -53,20 +39,6 @@ class UnitSetup extends BaseModel
         $this->fields->double('amount', 8, 2)->nullable()->html('number');
     }
 
-    /**
-     * Define rights for this model.
-     *
-     * @return array
-     */
-    public function rights(): array
-    {
-        $rights = parent::rights();
 
-        $rights['staff'] = ['view' => true];
-        $rights['registered'] = [];
-        $rights['guest'] = [];
-
-        return $rights;
-    }
 
 }

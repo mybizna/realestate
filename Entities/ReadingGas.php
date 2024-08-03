@@ -16,20 +16,6 @@ class ReadingGas extends BaseModel
     protected $fillable = ['name', 'tenancy_id', 'invoice_id', 'reading', 'units', 'billing_period', 'billing_date'];
 
     /**
-     * The fields that are to be render when performing relationship queries.
-     *
-     * @var array<string>
-     */
-    public $rec_names = ['name'];
-
-    /**
-     * List of tables names that are need in this model during migration.
-     *
-     * @var array<string>
-     */
-    public array $migrationDependancy = ['realestate_tenancy', 'account_invoice'];
-
-    /**
      * The table associated with the model.
      *
      * @var string
@@ -55,40 +41,9 @@ class ReadingGas extends BaseModel
         $this->fields->dateTime('billing_date')->nullable()->html('date');
     }
 
-    /**
-     * List of structure for this model.
-     */
-    public function structure($structure): array
-    {
-
-        //'name', 'tenancy_id', 'invoice_id', 'reading', 'units', 'billing_period', 'billing_date'
-        $structure['table'] = ['name', 'tenancy_id', 'invoice_id', 'reading', 'units', 'billing_period', 'billing_date'];
-        $structure['form'] = [
-            ['label' => 'Reading Gas Name', 'class' => 'col-span-full', 'fields' => ['name']],
-            ['label' => 'Gas Reading', 'class' => 'col-span-full  md:col-span-6 md:pr-2', 'fields' => ['reading', 'units']],
-            ['label' => 'Reading Gas Setting', 'class' => 'col-span-full  md:col-span-6 md:pr-2', 'fields' => ['tenancy_id', 'invoice_id']],
-            ['label' => 'Reading Gas Date', 'class' => 'col-span-full  md:col-span-6 md:pr-2', 'fields' => ['billing_period', 'billing_date']],
-        ];
-        $structure['filter'] = ['name', 'tenancy_id', 'invoice_id'];
-
-        return $structure;
-    }
+  
 
 
-    /**
-     * Define rights for this model.
-     *
-     * @return array
-     */
-    public function rights(): array
-    {
-        $rights = parent::rights();
-
-        $rights['staff'] = ['view' => true];
-        $rights['registered'] = ['view' => true];
-        $rights['guest'] = [];
-
-        return $rights;
-    }
+ 
 
 }
