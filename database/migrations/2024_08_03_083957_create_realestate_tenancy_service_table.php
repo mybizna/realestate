@@ -13,7 +13,12 @@ return new class extends Migration
     {
         Schema::create('realestate_tenancy_service', function (Blueprint $table) {
             $table->id();
-            
+
+            $table->string('title');
+            $table->foreignId('tenancy_id')->nullable();
+            $table->double('amount', 8, 2)->nullable();
+            $table->dateTime('billing_date')->nullable();
+
             $table->timestamps();
         });
     }

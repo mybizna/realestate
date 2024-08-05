@@ -13,7 +13,12 @@ return new class extends Migration
     {
         Schema::create('realestate_estate', function (Blueprint $table) {
             $table->id();
-            
+
+            $table->string('name')->nullable();
+            $table->string('slug')->nullable();
+            $table->text('description')->nullable();
+            $table->foreignId('town_id')->nullable();
+
             $table->timestamps();
         });
     }

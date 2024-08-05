@@ -13,7 +13,13 @@ return new class extends Migration
     {
         Schema::create('realestate_region', function (Blueprint $table) {
             $table->id();
-            
+
+            $table->string('name');
+            $table->string('slug');
+            $table->string('description')->nullable();
+            $table->foreignId('country_id')->nullable();
+            $table->foreignId('state_id')->nullable();
+
             $table->timestamps();
         });
     }

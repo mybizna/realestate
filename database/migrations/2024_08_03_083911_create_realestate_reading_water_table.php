@@ -13,7 +13,14 @@ return new class extends Migration
     {
         Schema::create('realestate_reading_water', function (Blueprint $table) {
             $table->id();
-            
+
+            $table->foreignId('tenancy_id')->nullable()->index('tenancy_id');
+            $table->foreignId('invoice_id')->nullable()->index('invoice_id');
+            $table->integer('reading')->nullable();
+            $table->integer('units')->nullable();
+            $table->string('billing_period', 20)->nullable();
+            $table->dateTime('billing_date')->nullable();
+
             $table->timestamps();
         });
     }

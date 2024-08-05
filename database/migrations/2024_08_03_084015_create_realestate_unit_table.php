@@ -13,7 +13,19 @@ return new class extends Migration
     {
         Schema::create('realestate_unit', function (Blueprint $table) {
             $table->id();
-            
+
+            $table->string('title');
+            $table->string('slug');
+            $table->string('description')->nullable();
+            $table->foreignId('building_id')->nullable();
+            $table->enum('type', ['single', 'bedsitter', 'one_bedroom', 'two_bedroom', 'three_bedroom', 'four_bedroom'])->default('one_bedroom');
+            $table->double('amount', 8, 2)->nullable();
+            $table->double('deposit', 8, 2)->nullable();
+            $table->double('goodwill', 8, 2)->nullable();
+            $table->integer('rooms');
+            $table->integer('bathrooms');
+            $table->boolean('is_full')->default(0)->nullable();
+
             $table->timestamps();
         });
     }

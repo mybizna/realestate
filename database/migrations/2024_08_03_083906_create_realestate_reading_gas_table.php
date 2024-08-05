@@ -13,6 +13,15 @@ return new class extends Migration
     {
         Schema::create('realestate_reading_gas', function (Blueprint $table) {
             $table->id();
+
+            $table->foreignId('tenancy_id')->nullable();
+            $table->foreignId('invoice_id')->nullable();
+            $table->integer('reading')->nullable();
+            $table->integer('units')->nullable();
+            $table->string('billing_period', 20)->nullable();
+            $table->dateTime('billing_date')->nullable();
+
+
             
             $table->timestamps();
         });

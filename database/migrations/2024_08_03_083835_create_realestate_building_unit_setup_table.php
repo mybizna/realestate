@@ -13,7 +13,12 @@ return new class extends Migration
     {
         Schema::create('realestate_building_unit_setup', function (Blueprint $table) {
             $table->id();
-            
+
+            $table->string('title')->nullable();
+            $table->string('slug')->nullable();
+            $table->double('amount', 8, 2)->nullable();
+            $table->foreignId('building_id')->nullable();
+
             $table->timestamps();
         });
     }

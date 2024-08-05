@@ -13,7 +13,18 @@ return new class extends Migration
     {
         Schema::create('realestate_building', function (Blueprint $table) {
             $table->id();
-            
+
+            $table->string('name')->nullable();
+            $table->string('slug')->nullable();
+            $table->foreignId('estate_id')->nullable();
+            $table->enum('type', ['apartment', 'maisonette', 'bungalow'])->nullable();
+            $table->text('description')->nullable();
+            $table->integer('units')->nullable();
+            $table->double('default_deposit', 8, 2)->nullable();
+            $table->double('default_goodwill', 8, 2)->nullable();
+            $table->double('default_amount', 8, 2)->nullable();
+            $table->boolean('is_full')->default(0)->nullable();
+
             $table->timestamps();
         });
     }

@@ -2,8 +2,6 @@
 
 namespace Modules\Realestate\Entities;
 
-use Illuminate\Database\Schema\Blueprint;
-use Modules\Base\Classes\Migration;
 use Modules\Base\Entities\BaseModel;
 
 class Tenancy extends BaseModel
@@ -21,40 +19,5 @@ class Tenancy extends BaseModel
      * @var string
      */
     protected $table = "realestate_tenancy";
-
-    /**
-     * List of fields to be migrated to the datebase when creating or updating model during migration.
-     *
-     * @param Blueprint $table
-     * @return void
-     */
-    public function fields(Blueprint $table = null): void
-    {
-        $this->fields = $table ?? new Blueprint($this->table);
-
-        $type = ['weekly', 'bi_weekly', 'monthly', 'quarterly', 'bi_annually', 'annually'];
-
-        $this->fields->increments('id')->html('hidden');
-        $this->fields->string('title')->html('text');
-        $this->fields->string('slug')->html('text');
-        $this->fields->string('description')->nullable()->html('textarea');
-        $this->fields->foreignId('unit_id')->nullable()->html('recordpicker')->relation(['realestate', 'unit']);
-        $this->fields->foreignId('partner_id')->nullable()->html('recordpicker')->relation(['partner']);
-        $this->fields->enum('type', $type)->options($type)->default('monthly')->html('select');
-        $this->fields->double('amount', 8, 2)->nullable()->html('amount');
-        $this->fields->double('deposit', 8, 2)->nullable()->html('amount');
-        $this->fields->double('goodwill', 8, 2)->nullable()->html('amount');
-        $this->fields->integer('rooms')->html('number');
-        $this->fields->dateTime('billing_date')->nullable()->html('date');
-        $this->fields->boolean('is_merged_bill')->default(true)->nullable()->html('switch');
-        $this->fields->boolean('is_started')->default(0)->nullable()->html('switch');
-        $this->fields->boolean('is_closed')->default(0)->nullable()->html('switch');
-        $this->fields->boolean('bill_gas')->default(0)->nullable()->html('switch');
-        $this->fields->boolean('bill_water')->default(0)->nullable()->html('switch');
-        $this->fields->boolean('bill_electricity')->default(0)->nullable()->html('switch');
-    }
-
-
-
 
 }
