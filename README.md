@@ -21,7 +21,7 @@ The Real Estate module offers a range of features to streamline your real estate
 To leverage these features, access the MyBizNa ERP application and navigate to the Real Estate module. Explore the available options to effectively manage your real estate operations, optimize property transactions, and maximize revenue generation.
 
 ## Requirements
-Mybizna ERP version 1.0 or above
+Mybizna ERP version 2024.1 or above
 
 ## Support
 If you have any questions or need assistance, please contact our support team. We're always happy to help!
