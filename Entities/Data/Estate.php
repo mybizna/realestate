@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Realestate\Entities\Data;
+namespace Modules\Realestate\Models\Data;
 
 use Illuminate\Support\Facades\DB;
 use Modules\Base\Classes\Datasetter;
@@ -276,7 +276,6 @@ class Estate
             "description" => "Karagita",
             "town_id" => $town_id,
         ]);
-      
 
         $town_id = DB::table('realestate_town')->where('slug', 'eldoret')->value('id');
         $datasetter->add_data('realestate', 'estate', 'slug', [

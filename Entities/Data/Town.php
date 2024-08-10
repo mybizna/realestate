@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Realestate\Entities\Data;
+namespace Modules\Realestate\Models\Data;
 
 use Illuminate\Support\Facades\DB;
 use Modules\Base\Classes\Datasetter;
@@ -9,7 +9,7 @@ class Town
 {
     /**
      * Set ordering of the Class to be migrated.
-     * 
+     *
      * @var int
      */
     public $ordering = 7;

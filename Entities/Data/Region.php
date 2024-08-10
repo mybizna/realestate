@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Realestate\Entities\Data;
+namespace Modules\Realestate\Models\Data;
 
 use Illuminate\Support\Facades\DB;
 use Modules\Base\Classes\Datasetter;
@@ -9,7 +9,7 @@ class Region
 {
     /**
      * Set ordering of the Class to be migrated.
-     * 
+     *
      * @var int
      */
     public $ordering = 5;
@@ -25,7 +25,6 @@ class Region
     {
         $country_id = DB::table('core_country')->where('code', 'KE')->value('id');
         $state_id = DB::table('core_state')->where('country_code', 'KE')->value('id');
-      
 
         $datasetter->add_data('realestate', 'region', 'slug', [
             "name" => "Nairobi County",
@@ -57,7 +56,7 @@ class Region
             "description" => "Nakuru County",
             "country_id" => $country_id,
             "state_id" => $state_id,
-        ]); 
+        ]);
 
         $datasetter->add_data('realestate', 'region', 'slug', [
             "name" => "Eldoret County",

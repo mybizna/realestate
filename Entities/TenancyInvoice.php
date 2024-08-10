@@ -1,8 +1,8 @@
 <?php
 
-namespace Modules\Realestate\Entities;
+namespace Modules\Realestate\Models
 
-use Modules\Base\Entities\BaseModel;
+use Modules\Base\ModelsaseModel;
 
 class TenancyInvoice extends BaseModel
 {

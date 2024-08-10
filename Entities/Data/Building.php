@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Realestate\Entities\Data;
+namespace Modules\Realestate\Models\Data;
 
 use Illuminate\Support\Facades\DB;
 use Modules\Base\Classes\Datasetter;

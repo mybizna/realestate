@@ -1,10 +1,8 @@
 <?php
 
-namespace Modules\Realestate\Entities;
+namespace Modules\Realestate\Models;
 
-use Illuminate\Database\Schema\Blueprint;
-use Modules\Base\Classes\Migration;
-use Modules\Base\Entities\BaseModel;
+use Modules\Base\Models\BaseModel;
 
 class Region extends BaseModel
 {
@@ -21,12 +19,5 @@ class Region extends BaseModel
      * @var string
      */
     protected $table = "realestate_region";
-
- 
-
- 
-
-
- 
 
 }
