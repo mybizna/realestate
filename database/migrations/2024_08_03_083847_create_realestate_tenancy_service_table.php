@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
 
             $table->string('title');
-            $table->foreignId('tenancy_id')->constrained('realestate_tenancy')->onDelete('cascade')->nullable()->index('tenancy_id');
+            $table->foreignId('tenancy_id')->constrained('realestate_tenancy')->onDelete('cascade')->nullable()->index('realestate_tenancy_service_tenancy_id');
             $table->double('amount', 8, 2)->nullable();
             $table->dateTime('billing_date')->nullable();
 

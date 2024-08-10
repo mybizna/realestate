@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('realestate_tenancy_invoice', function (Blueprint $table) {
             $table->id();
 
-            $table->foreignId('tenancy_id')->constrained('realestate_tenancy')->onDelete('cascade')->nullable()->index('tenancy_id');
-            $table->foreignId('invoice_id')->constrained('account_invoice')->onDelete('cascade')->nullable()->index('invoice_id');
+            $table->foreignId('tenancy_id')->constrained('realestate_tenancy')->onDelete('cascade')->nullable()->index('realestate_tenancy_invoice_tenancy_id');
+            $table->foreignId('invoice_id')->constrained('account_invoice')->onDelete('cascade')->nullable()->index('realestate_tenancy_invoice_invoice_id');
             $table->char('billing_period', 20)->nullable();
 
             $table->timestamps();

@@ -17,8 +17,8 @@ return new class extends Migration
             $table->string('title');
             $table->string('slug');
             $table->string('description')->nullable();
-            $table->foreignId('unit_id')->constrained('realestate_unit')->onDelete('cascade')->nullable()->index('unit_id');
-            $table->foreignId('partner_id')->constrained('partner_partner')->onDelete('cascade')->nullable()->index('partner_id');
+            $table->foreignId('unit_id')->constrained('realestate_unit')->onDelete('cascade')->nullable()->index('realestate_tenancy_unit_id');
+            $table->foreignId('partner_id')->constrained('partner_partner')->onDelete('cascade')->nullable()->index('realestate_tenancy_partner_id');
             $table->enum('type', ['weekly', 'bi_weekly', 'monthly', 'quarterly', 'bi_annually', 'annually'])->default('monthly');
             $table->double('amount', 8, 2)->nullable();
             $table->double('deposit', 8, 2)->nullable();
@@ -32,10 +32,6 @@ return new class extends Migration
             $table->boolean('bill_water')->default(0)->nullable();
             $table->boolean('bill_electricity')->default(0)->nullable();
 
-
-
-    
-            
             $table->timestamps();
         });
     }

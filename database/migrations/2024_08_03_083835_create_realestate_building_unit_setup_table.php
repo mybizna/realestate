@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('title')->nullable();
             $table->string('slug')->nullable();
             $table->double('amount', 8, 2)->nullable();
-            $table->foreignId('building_id')->constrained('realestate_building')->onDelete('cascade')->nullable()->index('building_id');
+            $table->foreignId('building_id')->constrained('realestate_building')->onDelete('cascade')->nullable()->index('realestate_building_unit_setup_building_id');
 
             $table->timestamps();
         });

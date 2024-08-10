@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('realestate_town', function (Blueprint $table) {
             $table->id();
 
-            $table->foreignId('region_id')->constrained('realestate_region')->onDelete('cascade')->nullable()->index('region_id');
+            $table->foreignId('region_id')->constrained('realestate_region')->onDelete('cascade')->nullable()->index('realestate_town_region_id');
             $table->string('name');
             $table->string('slug');
             $table->string('description')->nullable();
