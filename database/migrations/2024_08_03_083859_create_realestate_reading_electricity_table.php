@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
 
             $table->integer('reading');
-            $table->foreignId('tenancy_id')->nullable();
-            $table->foreignId('invoice_id')->nullable();
+            $table->foreignId('tenancy_id')->constrained('realestate_tenancy')->onDelete('cascade')->nullable()->index('tenancy_id');
+            $table->foreignId('invoice_id')->constrained('acount_invoice')->onDelete('cascade')->nullable()->index('invoice_id');
             $table->integer('units');
             $table->char('billing_period', 20)->nullable();
             $table->dateTime('billing_date')->nullable();

@@ -17,8 +17,8 @@ return new class extends Migration
             $table->string('name');
             $table->string('slug');
             $table->string('description')->nullable();
-            $table->foreignId('country_id')->nullable();
-            $table->foreignId('state_id')->nullable();
+            $table->foreignId('country_id')->constrained('core_country')->onDelete('cascade')->nullable()->index('country_id');
+            $table->foreignId('state_id')->constrained('core_state')->onDelete('cascade')->nullable()->index('state_id');
 
             $table->timestamps();
         });

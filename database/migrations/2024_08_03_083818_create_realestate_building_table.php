@@ -16,7 +16,7 @@ return new class extends Migration
 
             $table->string('name')->nullable();
             $table->string('slug')->nullable();
-            $table->foreignId('estate_id')->nullable();
+            $table->foreignId('estate_id')->constrained('realestate_estate')->onDelete('cascade')->nullable()->index('estate_id');
             $table->enum('type', ['apartment', 'maisonette', 'bungalow'])->nullable();
             $table->text('description')->nullable();
             $table->integer('units')->nullable();
