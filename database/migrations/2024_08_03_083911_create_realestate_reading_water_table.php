@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
 
             $table->foreignId('tenancy_id')->constrained('realestate_tenancy')->onDelete('cascade')->nullable()->index('realestate_reading_water_tenancy_id');
-            $table->foreignId('invoice_id')->constrained('realestate_invoice')->onDelete('cascade')->nullable()->index('realestate_reading_water_invoice_id');
+            $table->foreignId('invoice_id')->constrained('account_invoice')->onDelete('cascade')->nullable()->index('realestate_reading_water_invoice_id');
             $table->integer('reading')->nullable();
             $table->integer('units')->nullable();
             $table->string('billing_period', 20)->nullable();
