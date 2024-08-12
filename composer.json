@@ -26,7 +26,14 @@
   },
   "autoload": {
     "psr-4": {
-      "Modules\\Realestate\\": ""
+      "Modules\\Realestate\\": "app/",
+      "Modules\\Realestate\\Database\\Factories\\": "database/factories/",
+      "Modules\\Realestate\\Database\\Seeders\\": "database/seeders/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Modules\\Realestate\\Tests\\": "tests/"
     }
   }
 }
