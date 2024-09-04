@@ -2,9 +2,6 @@
 
 namespace Modules\Realestate\Filament\Resources;
 
-use Modules\Realestate\Filament\Resources\TownResource\Pages;
-use Modules\Realestate\Filament\Resources\TownResource\RelationManagers;
-use Modules\Realestate\Models\Town;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -12,10 +9,16 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Modules\Realestate\Filament\Resources\TownResource\Pages;
+use Modules\Realestate\Models\Town;
 
 class TownResource extends Resource
 {
     protected static ?string $model = Town::class;
+
+    protected static ?string $slug = 'realestate/town';
+
+    protected static ?string $navigationGroup = 'Realestate';
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 

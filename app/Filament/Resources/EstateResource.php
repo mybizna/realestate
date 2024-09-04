@@ -2,9 +2,6 @@
 
 namespace Modules\Realestate\Filament\Resources;
 
-use Modules\Realestate\Filament\Resources\EstateResource\Pages;
-use Modules\Realestate\Filament\Resources\EstateResource\RelationManagers;
-use Modules\Realestate\Models\Estate;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -12,10 +9,16 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Modules\Realestate\Filament\Resources\EstateResource\Pages;
+use Modules\Realestate\Models\Estate;
 
 class EstateResource extends Resource
 {
     protected static ?string $model = Estate::class;
+
+    protected static ?string $slug = 'realestate/estate';
+
+    protected static ?string $navigationGroup = 'Realestate';
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 

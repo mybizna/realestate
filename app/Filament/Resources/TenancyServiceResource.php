@@ -2,9 +2,6 @@
 
 namespace Modules\Realestate\Filament\Resources;
 
-use Modules\Realestate\Filament\Resources\TenancyServiceResource\Pages;
-use Modules\Realestate\Filament\Resources\TenancyServiceResource\RelationManagers;
-use Modules\Realestate\Models\TenancyService;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -12,10 +9,16 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Modules\Realestate\Filament\Resources\TenancyServiceResource\Pages;
+use Modules\Realestate\Models\TenancyService;
 
 class TenancyServiceResource extends Resource
 {
     protected static ?string $model = TenancyService::class;
+
+    protected static ?string $slug = 'realestate/tenancy/service';
+
+    protected static ?string $navigationGroup = 'Realestate';
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 

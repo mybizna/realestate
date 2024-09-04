@@ -2,9 +2,6 @@
 
 namespace Modules\Realestate\Filament\Resources;
 
-use Modules\Realestate\Filament\Resources\UnitSetupResource\Pages;
-use Modules\Realestate\Filament\Resources\UnitSetupResource\RelationManagers;
-use Modules\Realestate\Models\UnitSetup;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -12,10 +9,16 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Modules\Realestate\Filament\Resources\UnitSetupResource\Pages;
+use Modules\Realestate\Models\UnitSetup;
 
 class UnitSetupResource extends Resource
 {
     protected static ?string $model = UnitSetup::class;
+
+    protected static ?string $slug = 'realestate/unit/setup';
+
+    protected static ?string $navigationGroup = 'Realestate';
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
