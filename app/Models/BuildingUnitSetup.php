@@ -3,6 +3,7 @@
 namespace Modules\Realestate\Models;
 
 use Modules\Base\Models\BaseModel;
+use Modules\Realestate\Models\Building;
 
 class BuildingUnitSetup extends BaseModel
 {
@@ -19,5 +20,14 @@ class BuildingUnitSetup extends BaseModel
      * @var string
      */
     protected $table = "realestate_building_unit_setup";
+
+    /**
+     * Add relationship to Building
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function building()
+    {
+        return $this->belongsTo(Building::class);
+    }
 
 }

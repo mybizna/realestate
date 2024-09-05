@@ -3,6 +3,7 @@
 namespace Modules\Realestate\Models;
 
 use Modules\Base\Models\BaseModel;
+use Modules\Realestate\Models\Tenancy;
 
 class TenancyService extends BaseModel
 {
@@ -19,5 +20,14 @@ class TenancyService extends BaseModel
      * @var string
      */
     protected $table = "realestate_tenancy_service";
+
+    /**
+     * Add relationship to Tenancy
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function tenancy()
+    {
+        return $this->belongsTo(Tenancy::class);
+    }
 
 }

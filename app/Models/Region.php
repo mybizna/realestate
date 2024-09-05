@@ -3,6 +3,8 @@
 namespace Modules\Realestate\Models;
 
 use Modules\Base\Models\BaseModel;
+use Modules\Core\Models\Country;
+use Modules\Realestate\Models\State;
 
 class Region extends BaseModel
 {
@@ -19,5 +21,23 @@ class Region extends BaseModel
      * @var string
      */
     protected $table = "realestate_region";
+
+    /**
+     * Add relationship to Country
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function country()
+    {
+        return $this->belongsTo(Country::class);
+    }
+
+    /**
+     * Add relationship to State
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function state()
+    {
+        return $this->belongsTo(State::class);
+    }
 
 }
