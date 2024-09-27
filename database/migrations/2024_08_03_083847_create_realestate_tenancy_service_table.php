@@ -15,11 +15,16 @@ return new class extends Migration
             $table->id();
 
             $table->string('title');
-            $table->foreignId('tenancy_id')->constrained('realestate_tenancy')->onDelete('cascade')->nullable()->index('realestate_tenancy_service_tenancy_id');
+            $table->foreignId('tenancy_id')->nullable()->constrained('realestate_tenancy')->onDelete('set null');
             $table->double('amount', 8, 2)->nullable();
             $table->dateTime('billing_date')->nullable();
 
+            $table->foreignId('created_by')->nullable()->constrained('users')->onDelete('set null');
+            $table->foreignId('updated_by')->nullable()->constrained('users')->onDelete('set null');
+            $table->foreignId('deleted_by')->nullable()->constrained('users')->onDelete('set null');
+
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

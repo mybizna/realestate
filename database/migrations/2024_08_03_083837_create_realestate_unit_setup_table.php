@@ -16,10 +16,15 @@ return new class extends Migration
 
             $table->string('title')->nullable();
             $table->string('slug')->nullable();
-            $table->foreignId('unit_id')->constrained('realestate_unit')->onDelete('cascade')->nullable()->index('realestate_unit_setup_unit_id');
+            $table->foreignId('unit_id')->nullable()->constrained('realestate_unit')->onDelete('set null');
             $table->double('amount', 8, 2)->nullable();
 
+            $table->foreignId('created_by')->nullable()->constrained('users')->onDelete('set null');
+            $table->foreignId('updated_by')->nullable()->constrained('users')->onDelete('set null');
+            $table->foreignId('deleted_by')->nullable()->constrained('users')->onDelete('set null');
+
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

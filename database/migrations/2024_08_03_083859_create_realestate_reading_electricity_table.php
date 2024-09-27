@@ -15,13 +15,18 @@ return new class extends Migration
             $table->id();
 
             $table->integer('reading');
-            $table->foreignId('tenancy_id')->constrained('realestate_tenancy')->onDelete('cascade')->nullable()->index('realestate_reading_electricity_tenancy_id');
-            $table->foreignId('invoice_id')->constrained('account_invoice')->onDelete('cascade')->nullable()->index('realestate_reading_electricity_invoice_id');
+            $table->foreignId('tenancy_id')->nullable()->constrained('realestate_tenancy')->onDelete('set null');
+            $table->foreignId('invoice_id')->nullable()->constrained('account_invoice')->onDelete('set null');
             $table->integer('units');
             $table->char('billing_period', 20)->nullable();
             $table->dateTime('billing_date')->nullable();
 
+            $table->foreignId('created_by')->nullable()->constrained('users')->onDelete('set null');
+            $table->foreignId('updated_by')->nullable()->constrained('users')->onDelete('set null');
+            $table->foreignId('deleted_by')->nullable()->constrained('users')->onDelete('set null');
+
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

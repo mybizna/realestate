@@ -14,12 +14,17 @@ return new class extends Migration
         Schema::create('realestate_town', function (Blueprint $table) {
             $table->id();
 
-            $table->foreignId('region_id')->constrained('realestate_region')->onDelete('cascade')->nullable()->index('realestate_town_region_id');
+            $table->foreignId('region_id')->nullable()->constrained('realestate_region')->onDelete('set null');
             $table->string('name');
             $table->string('slug');
             $table->string('description')->nullable();
 
+            $table->foreignId('created_by')->nullable()->constrained('users')->onDelete('set null');
+            $table->foreignId('updated_by')->nullable()->constrained('users')->onDelete('set null');
+            $table->foreignId('deleted_by')->nullable()->constrained('users')->onDelete('set null');
+
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -17,9 +17,14 @@ return new class extends Migration
             $table->string('title')->nullable();
             $table->string('slug')->nullable();
             $table->double('amount', 8, 2)->nullable();
-            $table->foreignId('building_id')->constrained('realestate_building')->onDelete('cascade')->nullable()->index('realestate_building_unit_setup_building_id');
+            $table->foreignId('building_id')->nullable()->constrained('realestate_building')->onDelete('set null');
+
+            $table->foreignId('created_by')->nullable()->constrained('users')->onDelete('set null');
+            $table->foreignId('updated_by')->nullable()->constrained('users')->onDelete('set null');
+            $table->foreignId('deleted_by')->nullable()->constrained('users')->onDelete('set null');
 
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

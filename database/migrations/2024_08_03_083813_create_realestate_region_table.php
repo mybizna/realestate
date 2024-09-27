@@ -17,10 +17,15 @@ return new class extends Migration
             $table->string('name');
             $table->string('slug');
             $table->string('description')->nullable();
-            $table->foreignId('country_id')->constrained('core_country')->onDelete('cascade')->nullable()->index('realestate_region_country_id');
-            $table->foreignId('state_id')->constrained('core_state')->onDelete('cascade')->nullable()->index('realestate_region_state_id');
+            $table->foreignId('country_id')->nullable()->constrained('core_country')->onDelete('set null');
+            $table->foreignId('state_id')->nullable()->constrained('core_state')->onDelete('set null');
+
+            $table->foreignId('created_by')->nullable()->constrained('users')->onDelete('set null');
+            $table->foreignId('updated_by')->nullable()->constrained('users')->onDelete('set null');
+            $table->foreignId('deleted_by')->nullable()->constrained('users')->onDelete('set null');
 
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

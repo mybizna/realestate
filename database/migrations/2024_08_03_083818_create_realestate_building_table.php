@@ -16,7 +16,7 @@ return new class extends Migration
 
             $table->string('name')->nullable();
             $table->string('slug')->nullable();
-            $table->foreignId('estate_id')->constrained('realestate_estate')->onDelete('cascade')->nullable()->index('realestate_building_estate_id');
+            $table->foreignId('estate_id')->nullable()->constrained('realestate_estate')->onDelete('set null');
             $table->enum('type', ['apartment', 'maisonette', 'bungalow'])->nullable();
             $table->text('description')->nullable();
             $table->integer('units')->nullable();
@@ -25,7 +25,12 @@ return new class extends Migration
             $table->double('default_amount', 8, 2)->nullable();
             $table->boolean('is_full')->default(0)->nullable();
 
+            $table->foreignId('created_by')->nullable()->constrained('users')->onDelete('set null');
+            $table->foreignId('updated_by')->nullable()->constrained('users')->onDelete('set null');
+            $table->foreignId('deleted_by')->nullable()->constrained('users')->onDelete('set null');
+
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
