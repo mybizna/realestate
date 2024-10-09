@@ -4,15 +4,12 @@ namespace Modules\Realestate\Filament\Resources;
 
 use Filament\Forms;
 use Filament\Forms\Form;
-use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
-use Modules\Realestate\Filament\Resources\RegionResource\Pages;
+use Modules\Base\Filament\Resources\BaseResource;
 use Modules\Realestate\Models\Region;
 
-class RegionResource extends Resource
+class RegionResource extends BaseResource
 {
     protected static ?string $model = Region::class;
 
@@ -84,27 +81,4 @@ class RegionResource extends Resource
             ]);
     }
 
-    public static function getRelations(): array
-    {
-        return [
-            //
-        ];
-    }
-
-    public static function getPages(): array
-    {
-        return [
-            'index' => Pages\ListRegions::route('/'),
-            'create' => Pages\CreateRegion::route('/create'),
-            'edit' => Pages\EditRegion::route('/{record}/edit'),
-        ];
-    }
-
-    public static function getEloquentQuery(): Builder
-    {
-        return parent::getEloquentQuery()
-            ->withoutGlobalScopes([
-                SoftDeletingScope::class,
-            ]);
-    }
 }

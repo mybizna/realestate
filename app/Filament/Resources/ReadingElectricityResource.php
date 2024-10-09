@@ -4,15 +4,12 @@ namespace Modules\Realestate\Filament\Resources;
 
 use Filament\Forms;
 use Filament\Forms\Form;
-use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
-use Modules\Realestate\Filament\Resources\ReadingElectricityResource\Pages;
+use Modules\Base\Filament\Resources\BaseResource;
 use Modules\Realestate\Models\ReadingElectricity;
 
-class ReadingElectricityResource extends Resource
+class ReadingElectricityResource extends BaseResource
 {
     protected static ?string $model = ReadingElectricity::class;
 
@@ -90,27 +87,4 @@ class ReadingElectricityResource extends Resource
             ]);
     }
 
-    public static function getRelations(): array
-    {
-        return [
-            //
-        ];
-    }
-
-    public static function getPages(): array
-    {
-        return [
-            'index' => Pages\ListReadingElectricities::route('/'),
-            'create' => Pages\CreateReadingElectricity::route('/create'),
-            'edit' => Pages\EditReadingElectricity::route('/{record}/edit'),
-        ];
-    }
-
-    public static function getEloquentQuery(): Builder
-    {
-        return parent::getEloquentQuery()
-            ->withoutGlobalScopes([
-                SoftDeletingScope::class,
-            ]);
-    }
 }
