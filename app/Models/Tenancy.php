@@ -1,15 +1,24 @@
 <?php
-
 namespace Modules\Realestate\Models;
 
+use Base\Casts\Money;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Schema\Blueprint;
 use Modules\Base\Models\BaseModel;
 use Modules\Partner\Models\Partner;
 use Modules\Realestate\Models\Unit;
-use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Tenancy extends BaseModel
 {
+
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array<string, string>
+     */
+    protected $casts = [
+        'total' => Money::class, // Use the custom MoneyCast
+    ];
     /**
      * The fields that can be filled
      *
@@ -44,7 +53,6 @@ class Tenancy extends BaseModel
 
     public function migration(Blueprint $table): void
     {
-        $table->id();
 
         $table->string('title');
         $table->string('slug');
@@ -52,9 +60,10 @@ class Tenancy extends BaseModel
         $table->foreignId('unit_id')->nullable()->constrained(table: 'realestate_unit')->onDelete('set null');
         $table->foreignId('partner_id')->nullable()->constrained(table: 'partner_partner')->onDelete('set null');
         $table->enum('type', ['weekly', 'bi_weekly', 'monthly', 'quarterly', 'bi_annually', 'annually'])->default('monthly');
-        $table->double('amount', 8, 2)->nullable();
-        $table->double('deposit', 8, 2)->nullable();
-        $table->double('goodwill', 8, 2)->nullable();
+        $table->integer('amount')->nullable();
+        $table->integer('deposit')->nullable();
+        $table->integer('goodwill')->nullable();
+        $table->string('currency')->default('USD');
         $table->integer('rooms');
         $table->dateTime('billing_date')->nullable();
         $table->boolean('is_merged_bill')->default(true)->nullable();

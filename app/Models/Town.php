@@ -35,7 +35,7 @@ class Town extends BaseModel
 
     public function migration(Blueprint $table): void
     {
-        $table->id();
+
 
         $table->foreignId('region_id')->nullable()->constrained(table: 'realestate_region')->onDelete('set null');
         $table->string('name');

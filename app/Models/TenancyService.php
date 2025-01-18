@@ -1,14 +1,23 @@
 <?php
-
 namespace Modules\Realestate\Models;
 
-use Modules\Base\Models\BaseModel;
-use Modules\Realestate\Models\Tenancy;
+use Base\Casts\Money;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Schema\Blueprint;
+use Modules\Base\Models\BaseModel;
+use Modules\Realestate\Models\Tenancy;
 
 class TenancyService extends BaseModel
 {
+
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array<string, string>
+     */
+    protected $casts = [
+        'total' => Money::class, // Use the custom MoneyCast
+    ];
     /**
      * The fields that can be filled
      *
@@ -32,14 +41,13 @@ class TenancyService extends BaseModel
         return $this->belongsTo(Tenancy::class);
     }
 
-
     public function migration(Blueprint $table): void
     {
-        $table->id();
 
         $table->string('title');
         $table->foreignId('tenancy_id')->nullable()->constrained(table: 'realestate_tenancy')->onDelete('set null');
-        $table->double('amount', 8, 2)->nullable();
+        $table->integer('amount')->nullable();
+        $table->string('currency')->default('USD');
         $table->dateTime('billing_date')->nullable();
 
     }

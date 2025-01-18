@@ -1,14 +1,23 @@
 <?php
-
 namespace Modules\Realestate\Models;
 
+use Base\Casts\Money;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Schema\Blueprint;
 use Modules\Base\Models\BaseModel;
 use Modules\Realestate\Models\Unit;
-use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class UnitSetup extends BaseModel
 {
+
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array<string, string>
+     */
+    protected $casts = [
+        'total' => Money::class, // Use the custom MoneyCast
+    ];
     /**
      * The fields that can be filled
      *
@@ -32,15 +41,14 @@ class UnitSetup extends BaseModel
         return $this->belongsTo(Unit::class);
     }
 
-
     public function migration(Blueprint $table): void
     {
-        $table->id();
 
         $table->string('title')->nullable();
         $table->string('slug')->nullable();
         $table->foreignId('unit_id')->nullable()->constrained(table: 'realestate_unit')->onDelete('set null');
-        $table->double('amount', 8, 2)->nullable();
+        $table->integer('amount')->nullable();
+        $table->string('currency')->default('USD');
 
     }
 }

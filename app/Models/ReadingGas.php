@@ -44,7 +44,7 @@ class ReadingGas extends BaseModel
 
     public function migration(Blueprint $table): void
     {
-        $table->id();
+
 
         $table->foreignId('tenancy_id')->nullable()->constrained(table: 'realestate_tenancy')->onDelete('set null');
         $table->foreignId('invoice_id')->nullable()->constrained(table: 'account_invoice')->onDelete('set null');

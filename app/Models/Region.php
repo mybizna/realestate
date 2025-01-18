@@ -4,7 +4,7 @@ namespace Modules\Realestate\Models;
 
 use Modules\Base\Models\BaseModel;
 use Modules\Core\Models\Country;
-use Modules\Realestate\Models\State;
+use Modules\Core\Models\State;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
@@ -44,7 +44,7 @@ class Region extends BaseModel
 
     public function migration(Blueprint $table): void
     {
-        $table->id();
+
 
         $table->string('name');
         $table->string('slug');

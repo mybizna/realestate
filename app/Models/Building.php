@@ -1,14 +1,23 @@
 <?php
-
 namespace Modules\Realestate\Models;
 
+use Base\Casts\Money;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Schema\Blueprint;
 use Modules\Base\Models\BaseModel;
 use Modules\Realestate\Models\Estate;
-use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Building extends BaseModel
 {
+
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array<string, string>
+     */
+    protected $casts = [
+        'total' => Money::class, // Use the custom MoneyCast
+    ];
     /**
      * The fields that can be filled
      *
@@ -34,7 +43,6 @@ class Building extends BaseModel
 
     public function migration(Blueprint $table): void
     {
-        $table->id();
 
         $table->string('name')->nullable();
         $table->string('slug')->nullable();
@@ -42,9 +50,10 @@ class Building extends BaseModel
         $table->enum('type', ['apartment', 'maisonette', 'bungalow'])->nullable();
         $table->text('description')->nullable();
         $table->integer('units')->nullable();
-        $table->double('default_deposit', 8, 2)->nullable();
-        $table->double('default_goodwill', 8, 2)->nullable();
-        $table->double('default_amount', 8, 2)->nullable();
+        $table->integer('default_deposit')->nullable();
+        $table->integer('default_goodwill')->nullable();
+        $table->integer('default_amount')->nullable();
+        $table->string('currency')->default('USD');
         $table->boolean('is_full')->default(0)->nullable();
 
     }

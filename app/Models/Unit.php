@@ -1,14 +1,23 @@
 <?php
-
 namespace Modules\Realestate\Models;
 
+use Base\Casts\Money;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Schema\Blueprint;
 use Modules\Base\Models\BaseModel;
 use Modules\Realestate\Models\Building;
-use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Unit extends BaseModel
 {
+
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array<string, string>
+     */
+    protected $casts = [
+        'total' => Money::class, // Use the custom MoneyCast
+    ];
     /**
      * The fields that can be filled
      *
@@ -32,24 +41,22 @@ class Unit extends BaseModel
         return $this->belongsTo(Building::class);
     }
 
-
     public function migration(Blueprint $table): void
     {
-        $table->id();
 
         $table->string('title');
         $table->string('slug');
         $table->string('description')->nullable();
         $table->foreignId('building_id')->nullable()->constrained(table: 'realestate_building')->onDelete('set null');
         $table->enum('type', ['single', 'bedsitter', 'one_bedroom', 'two_bedroom', 'three_bedroom', 'four_bedroom'])->default('one_bedroom');
-        $table->double('amount', 8, 2)->nullable();
-        $table->double('deposit', 8, 2)->nullable();
-        $table->double('goodwill', 8, 2)->nullable();
+        $table->integer('amount')->nullable();
+        $table->integer('deposit')->nullable();
+        $table->integer('goodwill')->nullable();
+        $table->string('currency')->default('USD');
         $table->integer('rooms');
         $table->integer('bathrooms');
         $table->boolean('is_full')->default(0)->nullable();
 
     }
-
 
 }

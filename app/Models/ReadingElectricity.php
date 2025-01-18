@@ -45,7 +45,7 @@ class ReadingElectricity extends BaseModel
 
     public function migration(Blueprint $table): void
     {
-        $table->id();
+
 
         $table->integer('reading');
         $table->foreignId('tenancy_id')->nullable()->constrained('realestate_tenancy')->onDelete('set null');

@@ -34,7 +34,7 @@ class Estate extends BaseModel
 
     public function migration(Blueprint $table): void
     {
-        $table->id();
+
 
         $table->string('name')->nullable();
         $table->string('slug')->nullable();
