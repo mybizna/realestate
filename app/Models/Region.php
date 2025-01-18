@@ -5,6 +5,8 @@ namespace Modules\Realestate\Models;
 use Modules\Base\Models\BaseModel;
 use Modules\Core\Models\Country;
 use Modules\Realestate\Models\State;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Region extends BaseModel
 {
@@ -26,7 +28,7 @@ class Region extends BaseModel
      * Add relationship to Country
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function country()
+    public function country(): BelongsTo
     {
         return $this->belongsTo(Country::class);
     }
@@ -35,9 +37,21 @@ class Region extends BaseModel
      * Add relationship to State
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function state()
+    public function state(): BelongsTo
     {
         return $this->belongsTo(State::class);
+    }
+
+    public function migration(Blueprint $table): void
+    {
+        $table->id();
+
+        $table->string('name');
+        $table->string('slug');
+        $table->string('description')->nullable();
+        $table->foreignId('country_id')->nullable()->constrained(table: 'core_country')->onDelete('set null');
+        $table->foreignId('state_id')->nullable()->constrained(table: 'core_state')->onDelete('set null');
+
     }
 
 }

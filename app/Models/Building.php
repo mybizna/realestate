@@ -4,6 +4,8 @@ namespace Modules\Realestate\Models;
 
 use Modules\Base\Models\BaseModel;
 use Modules\Realestate\Models\Estate;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Building extends BaseModel
 {
@@ -25,9 +27,26 @@ class Building extends BaseModel
      * Add relationship to Estate
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function estate()
+    public function estate(): BelongsTo
     {
         return $this->belongsTo(Estate::class);
+    }
+
+    public function migration(Blueprint $table): void
+    {
+        $table->id();
+
+        $table->string('name')->nullable();
+        $table->string('slug')->nullable();
+        $table->foreignId('estate_id')->nullable()->constrained(table: 'realestate_estate')->onDelete('set null');
+        $table->enum('type', ['apartment', 'maisonette', 'bungalow'])->nullable();
+        $table->text('description')->nullable();
+        $table->integer('units')->nullable();
+        $table->double('default_deposit', 8, 2)->nullable();
+        $table->double('default_goodwill', 8, 2)->nullable();
+        $table->double('default_amount', 8, 2)->nullable();
+        $table->boolean('is_full')->default(0)->nullable();
+
     }
 
 }

@@ -5,6 +5,8 @@ namespace Modules\Realestate\Models;
 use Modules\Base\Models\BaseModel;
 use Modules\Partner\Models\Partner;
 use Modules\Realestate\Models\Unit;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Tenancy extends BaseModel
 {
@@ -26,7 +28,7 @@ class Tenancy extends BaseModel
      * Add relationship to Unit
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function unit()
+    public function unit(): BelongsTo
     {
         return $this->belongsTo(Unit::class);
     }
@@ -35,9 +37,33 @@ class Tenancy extends BaseModel
      * Add relationship to Partner
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function partner()
+    public function partner(): BelongsTo
     {
         return $this->belongsTo(Partner::class);
+    }
+
+    public function migration(Blueprint $table): void
+    {
+        $table->id();
+
+        $table->string('title');
+        $table->string('slug');
+        $table->string('description')->nullable();
+        $table->foreignId('unit_id')->nullable()->constrained(table: 'realestate_unit')->onDelete('set null');
+        $table->foreignId('partner_id')->nullable()->constrained(table: 'partner_partner')->onDelete('set null');
+        $table->enum('type', ['weekly', 'bi_weekly', 'monthly', 'quarterly', 'bi_annually', 'annually'])->default('monthly');
+        $table->double('amount', 8, 2)->nullable();
+        $table->double('deposit', 8, 2)->nullable();
+        $table->double('goodwill', 8, 2)->nullable();
+        $table->integer('rooms');
+        $table->dateTime('billing_date')->nullable();
+        $table->boolean('is_merged_bill')->default(true)->nullable();
+        $table->boolean('is_started')->default(0)->nullable();
+        $table->boolean('is_closed')->default(0)->nullable();
+        $table->boolean('bill_gas')->default(0)->nullable();
+        $table->boolean('bill_water')->default(0)->nullable();
+        $table->boolean('bill_electricity')->default(0)->nullable();
+
     }
 
 }

@@ -4,6 +4,8 @@ namespace Modules\Realestate\Models;
 
 use Modules\Base\Models\BaseModel;
 use Modules\Realestate\Models\Region;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Town extends BaseModel
 {
@@ -25,9 +27,20 @@ class Town extends BaseModel
      * Add relationship to Region
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function region()
+    public function region(): BelongsTo
     {
         return $this->belongsTo(Region::class);
     }
 
+
+    public function migration(Blueprint $table): void
+    {
+        $table->id();
+
+        $table->foreignId('region_id')->nullable()->constrained(table: 'realestate_region')->onDelete('set null');
+        $table->string('name');
+        $table->string('slug');
+        $table->string('description')->nullable();
+
+    }
 }

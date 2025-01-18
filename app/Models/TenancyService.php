@@ -4,6 +4,8 @@ namespace Modules\Realestate\Models;
 
 use Modules\Base\Models\BaseModel;
 use Modules\Realestate\Models\Tenancy;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Schema\Blueprint;
 
 class TenancyService extends BaseModel
 {
@@ -25,9 +27,20 @@ class TenancyService extends BaseModel
      * Add relationship to Tenancy
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function tenancy()
+    public function tenancy(): BelongsTo
     {
         return $this->belongsTo(Tenancy::class);
     }
 
+
+    public function migration(Blueprint $table): void
+    {
+        $table->id();
+
+        $table->string('title');
+        $table->foreignId('tenancy_id')->nullable()->constrained(table: 'realestate_tenancy')->onDelete('set null');
+        $table->double('amount', 8, 2)->nullable();
+        $table->dateTime('billing_date')->nullable();
+
+    }
 }
