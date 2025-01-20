@@ -49,9 +49,13 @@ class Region extends BaseModel
         $table->string('name');
         $table->string('slug');
         $table->string('description')->nullable();
-        $table->foreignId('country_id')->nullable()->constrained(table: 'core_country')->onDelete('set null');
-        $table->foreignId('state_id')->nullable()->constrained(table: 'core_state')->onDelete('set null');
-
+        $table->unsignedBigInteger('country_id')->nullable();
+        $table->unsignedBigInteger('state_id')->nullable();
+    }
+    public function post_migration(Blueprint $table): void
+    {
+        $table->foreign('country_id')->references('id')->on('core_country')->onDelete('set null');
+        $table->foreign('state_id')->references('id')->on('core_state')->onDelete('set null');
     }
 
 }

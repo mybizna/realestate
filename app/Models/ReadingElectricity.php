@@ -48,12 +48,18 @@ class ReadingElectricity extends BaseModel
 
 
         $table->integer('reading');
-        $table->foreignId('tenancy_id')->nullable()->constrained('realestate_tenancy')->onDelete('set null');
-        $table->foreignId('invoice_id')->nullable()->constrained('account_invoice')->onDelete('set null');
+        $table->unsignedBigInteger('tenancy_id')->nullable();
+        $table->unsignedBigInteger('invoice_id')->nullable();
         $table->integer('units');
         $table->char('billing_period', 20)->nullable();
         $table->dateTime('billing_date')->nullable();
 
+    }
+
+    public function post_migration(Blueprint $table): void
+    {
+        $table->foreign('tenancy_id')->references('id')->on('realestate_tenancy')->onDelete('set null');
+        $table->foreign('invoice_id')->references('id')->on('account_invoice')->onDelete('set null');
     }
 
 }

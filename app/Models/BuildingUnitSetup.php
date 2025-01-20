@@ -48,8 +48,12 @@ class BuildingUnitSetup extends BaseModel
         $table->string('slug')->nullable();
         $table->integer('amount')->nullable();
         $table->string('currency')->default('USD');
-        $table->foreignId('building_id')->nullable()->constrained(table: 'realestate_building')->onDelete('set null');
+        $table->unsignedBigInteger('building_id')->nullable();
+    }
 
+    public function post_migration(Blueprint $table): void
+    {
+        $table->foreign('building_id')->references('id')->on('realestate_building')->onDelete('set null');
     }
 
 }

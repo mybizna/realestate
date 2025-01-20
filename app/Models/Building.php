@@ -46,7 +46,7 @@ class Building extends BaseModel
 
         $table->string('name')->nullable();
         $table->string('slug')->nullable();
-        $table->foreignId('estate_id')->nullable()->constrained(table: 'realestate_estate')->onDelete('set null');
+        $table->unsignedBigInteger('estate_id')->nullable();
         $table->enum('type', ['apartment', 'maisonette', 'bungalow'])->nullable();
         $table->text('description')->nullable();
         $table->integer('units')->nullable();
@@ -56,6 +56,11 @@ class Building extends BaseModel
         $table->string('currency')->default('USD');
         $table->boolean('is_full')->default(0)->nullable();
 
+    }
+
+    public function post_migration(Blueprint $table): void
+    {
+        $table->foreign('estate_id')->references('id')->on('realestate_estate')->onDelete('set null');
     }
 
 }

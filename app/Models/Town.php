@@ -1,11 +1,10 @@
 <?php
-
 namespace Modules\Realestate\Models;
 
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Schema\Blueprint;
 use Modules\Base\Models\BaseModel;
 use Modules\Realestate\Models\Region;
-use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Town extends BaseModel
 {
@@ -32,15 +31,19 @@ class Town extends BaseModel
         return $this->belongsTo(Region::class);
     }
 
-
     public function migration(Blueprint $table): void
     {
 
-
-        $table->foreignId('region_id')->nullable()->constrained(table: 'realestate_region')->onDelete('set null');
+        $table->unsignedBigInteger('region_id')->nullable();
         $table->string('name');
         $table->string('slug');
         $table->string('description')->nullable();
 
     }
+
+    public function post_migration(Blueprint $table): void
+    {
+        $table->foreign('region_id')->references('id')->on('realestate_region')->onDelete('set null');
+    }
+
 }

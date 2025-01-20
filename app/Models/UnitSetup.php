@@ -46,9 +46,14 @@ class UnitSetup extends BaseModel
 
         $table->string('title')->nullable();
         $table->string('slug')->nullable();
-        $table->foreignId('unit_id')->nullable()->constrained(table: 'realestate_unit')->onDelete('set null');
+        $table->unsignedBigInteger('unit_id')->nullable();
         $table->integer('amount')->nullable();
         $table->string('currency')->default('USD');
 
+    }
+
+    public function post_migration(Blueprint $table): void
+    {
+        $table->foreign('unit_id')->references('id')->on('realestate_unit')->onDelete('set null');
     }
 }

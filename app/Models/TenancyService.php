@@ -45,10 +45,15 @@ class TenancyService extends BaseModel
     {
 
         $table->string('title');
-        $table->foreignId('tenancy_id')->nullable()->constrained(table: 'realestate_tenancy')->onDelete('set null');
+        $table->unsignedBigInteger('tenancy_id')->nullable();
         $table->integer('amount')->nullable();
         $table->string('currency')->default('USD');
         $table->dateTime('billing_date')->nullable();
 
+    }
+
+    public function post_migration(Blueprint $table): void
+    {
+        $table->foreign('tenancy_id')->references('id')->on('realestate_tenancy')->onDelete('set null');
     }
 }

@@ -46,13 +46,19 @@ class ReadingWater extends BaseModel
     {
 
 
-        $table->foreignId('tenancy_id')->nullable()->constrained(table: 'realestate_tenancy')->onDelete('set null');
-        $table->foreignId('invoice_id')->nullable()->constrained(table: 'account_invoice')->onDelete('set null');
+        $table->unsignedBigInteger('tenancy_id')->nullable();
+        $table->unsignedBigInteger('invoice_id')->nullable();
         $table->integer('reading')->nullable();
         $table->integer('units')->nullable();
         $table->string('billing_period', 20)->nullable();
         $table->dateTime('billing_date')->nullable();
 
+    }
+
+    public function post_migration(Blueprint $table): void
+    {
+        $table->foreign('tenancy_id')->references('id')->on('realestate_tenancy')->onDelete('set null');
+        $table->foreign('invoice_id')->references('id')->on('account_invoice')->onDelete('set null');
     }
 
 }

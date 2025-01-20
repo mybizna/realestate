@@ -47,7 +47,7 @@ class Unit extends BaseModel
         $table->string('title');
         $table->string('slug');
         $table->string('description')->nullable();
-        $table->foreignId('building_id')->nullable()->constrained(table: 'realestate_building')->onDelete('set null');
+        $table->unsignedBigInteger('building_id')->nullable();
         $table->enum('type', ['single', 'bedsitter', 'one_bedroom', 'two_bedroom', 'three_bedroom', 'four_bedroom'])->default('one_bedroom');
         $table->integer('amount')->nullable();
         $table->integer('deposit')->nullable();
@@ -57,6 +57,11 @@ class Unit extends BaseModel
         $table->integer('bathrooms');
         $table->boolean('is_full')->default(0)->nullable();
 
+    }
+
+    public function post_migration(Blueprint $table): void
+    {
+        $table->foreign('building_id')->references('id')->on('realestate_building')->onDelete('set null');
     }
 
 }

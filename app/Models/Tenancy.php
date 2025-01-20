@@ -57,8 +57,8 @@ class Tenancy extends BaseModel
         $table->string('title');
         $table->string('slug');
         $table->string('description')->nullable();
-        $table->foreignId('unit_id')->nullable()->constrained(table: 'realestate_unit')->onDelete('set null');
-        $table->foreignId('partner_id')->nullable()->constrained(table: 'partner_partner')->onDelete('set null');
+        $table->unsignedBigInteger('unit_id')->nullable();
+        $table->unsignedBigInteger('partner_id')->nullable();
         $table->enum('type', ['weekly', 'bi_weekly', 'monthly', 'quarterly', 'bi_annually', 'annually'])->default('monthly');
         $table->integer('amount')->nullable();
         $table->integer('deposit')->nullable();
@@ -74,5 +74,13 @@ class Tenancy extends BaseModel
         $table->boolean('bill_electricity')->default(0)->nullable();
 
     }
+
+    public function post_migration(Blueprint $table): void
+    {
+        $table->foreign('unit_id')->references('id')->on('realestate_unit')->onDelete('set null');
+        $table->foreign('partner_id')->references('id')->on('partner_partner')->onDelete('set null');
+    }
+
+
 
 }

@@ -1,12 +1,11 @@
 <?php
-
 namespace Modules\Realestate\Models;
 
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Schema\Blueprint;
 use Modules\Account\Models\Invoice;
 use Modules\Base\Models\BaseModel;
 use Modules\Realestate\Models\Tenancy;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Schema\Blueprint;
 
 class TenancyInvoice extends BaseModel
 {
@@ -42,14 +41,18 @@ class TenancyInvoice extends BaseModel
         return $this->belongsTo(Invoice::class);
     }
 
-
     public function migration(Blueprint $table): void
     {
 
-
-        $table->foreignId('tenancy_id')->nullable()->constrained(table: 'realestate_tenancy')->onDelete('set null');
-        $table->foreignId('invoice_id')->nullable()->constrained(table: 'account_invoice')->onDelete('set null');
+        $table->unsignedBigInteger('tenancy_id')->nullable();
+        $table->unsignedBigInteger('invoice_id')->nullable();
         $table->char('billing_period', 20)->nullable();
 
+    }
+
+    public function post_migration(Blueprint $table): void
+    {
+        $table->foreign('tenancy_id')->references('id')->on('realestate_tenancy')->onDelete('set null');
+        $table->foreign('invoice_id')->references('id')->on('account_invoice')->onDelete('set null');
     }
 }
